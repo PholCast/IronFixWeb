@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login-sign-up.css">
+    <title>IronFix - Iniciar Sesión</title>
+</head>
+<body>
+    <div class="sign-container">
+        <!-- Logo -->
+        <div class="logo">
+            <span class="logo-text">IronFix</span>
+        </div>
+        
+        <!-- Login Form -->
+        <form>
+            <div class="form-group">
+                <label class="form-label" for="role">Selecciona tu rol:</label>
+                <select class="form-input" id="role" name="role" required>
+                    <option value="" disabled selected>Elige tu rol</option>
+                    <option value="admin">Administrador</option>
+                    <option value="technician">Técnico</option>
+                </select>
+            </div>
+
+            <!-- Username/Email field -->
+            <div class="form-group">
+                <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
+                <input type="text" id="username" required class="form-input" placeholder="Nombre de usuario o dirección de correo electrónico">
+            </div>
+            
+            <!-- Password field -->
+            <div class="form-group">
+                <label class="form-label">Contraseña</label>
+                <div class="password-input-container">
+                    <input type="password" id="password" required class="form-input" placeholder="Contraseña">
+                </div>
+            </div>
+            
+            <!-- Remember me and forgot password -->
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox">
+                    <span>Recuérdame</span>
+                </label>
+                <a href="#" class="forgot-password">Olvidaste tu contraseña?</a>
+            </div>
+            
+            <!-- Login button -->
+            <button type="submit" id="login-button">Acceder</button>
+            
+            <!-- Register link -->
+            <a href="./sign-up.html" class="register-link other-option-link">Regístrate ahora</a>
+        </form>
+    </div>
+        
+    <script type="module" src="../scripts/index.js"></script>
+    <script type="module" src="../scripts/login.js"></script>
+</body>
+</html>

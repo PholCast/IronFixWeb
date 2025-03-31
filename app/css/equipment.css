@@ -1,0 +1,131 @@
+.hero{
+    /* text-align: center; */
+    display: block;
+}
+/* Equipment section */
+.equipment {
+    padding: 30px 50px;
+    flex: 1;
+    background-color: #edf0f5;
+}
+
+
+.equipment-table {
+    width: 100%;
+    /* border-collapse: collapse; */
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 60px 100px 1fr 1fr 1fr 120px;
+    padding: 15px 0;
+    font-weight: 600;
+    color: #333;
+}
+
+.table-header div {
+    padding: 0 15px;
+}
+
+.equipment-row {
+    display: grid;
+    grid-template-columns: 60px 100px 1fr 1fr 1fr 120px;
+    padding: 15px 0;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+
+
+.add-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #0052e0;
+    display: flex;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.equipment-icon-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.equipment-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; 
+    background-color: #e0e0e0;
+    background-size: cover;
+    background-position: center;
+}
+
+.equipment-id, .equipment-type, .equipment-location, .equipment-status {
+    padding: 0 15px;
+}
+
+.equipment-status {
+    color: #0052e0;
+    font-weight: 500;
+}
+
+.equipment-actions {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.action-btn {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn {
+    background-color: #ff4d4f;
+}
+
+.edit-btn {
+    background-color: #faad14;
+}
+
+
+@media (max-width: 768px) {
+    .equipment {
+        padding: 20px;
+    }
+    
+    .table-header, .equipment-row {
+        grid-template-columns: 1fr;
+    }
+    
+
+
+    .table-header{
+        display: none;
+    }
+    
+    .equipment-id, .equipment-type,.equipment-location,.equipment-status{
+        padding: 10px 15px;
+    }
+    .equipment-actions {
+        padding: 10px 15px;
+        justify-content: flex-start;
+    }
+}

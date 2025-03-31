@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/navbar-footer.css">
+    <link rel="stylesheet" href="../css/equipment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>IronFix - Equipos</title>
+</head>
+<body>
+    <!-- Header with navigation -->
+    <header>
+        <div class="logo">IronFix</div>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Ordenes</a></li>
+                <li><a href="./technicians.html">Tecnicos</a></li>
+                <li><a href="./equipment.html">Equipos</a></li>
+                <li><a href="./profile.html">Perfil</a></li>
+            </ul>
+        </nav>
+        <button class="logout-btn"><a href="./login.html">Cerrar Sesión</a></button>
+    </header>
+    
+    <!-- Hero section -->
+    <section class="hero">
+        <h1>Equipos Registrados</h1>
+        <p>Administra los equipos e instalaciones registrados en el sistema.</p>
+    </section>
+    
+    <!-- Equipment section -->
+    <main class="equipment">
+        <!-- Equipment table -->
+        <div class="equipment-table">
+            <div class="table-header">
+                <!-- Add button (shown in the first column of the header) -->
+                <div class="add-btn"><span>+</span></div>
+                <div>ID</div>
+                <div>Tipo</div>
+                <div>Ubicación</div>
+                <div>Estado</div>
+                <div></div>
+            </div>
+            
+            <!-- Equipment item -->
+            <div class="equipment-row">
+                <div class="equipment-icon-cell">
+                    <a href="./equipment-info.html">
+                        <div class="equipment-icon" style="background-image: url('../assets/AireAcondicionado.jpg');">
+                            <!-- <img style="width:100%;" src="../assets/AireAcondicionado.jpg" alt=""> -->
+                        </div>
+                    </a>
+                </div>
+                <div class="equipment-id">01002</div>
+                <div class="equipment-type">Aire Acondicionado</div>
+                <div class="equipment-location">Lobby Principal</div>
+                <div class="equipment-status">En Revisión</div>
+                <div class="equipment-actions">
+                    <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
+                    <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                </div>
+            </div>
+
+
+            <!-- Equipment item -->
+            <div class="equipment-row">
+                <div class="equipment-icon-cell">
+                    <a href="./equipment-info.html">
+                        <div class="equipment-icon" style="background-image: url('../assets/grifo2.jpg');">
+                            <!-- <img style="width:100%;" src="../assets/AireAcondicionado.jpg" alt=""> -->
+                        </div>
+                    </a>
+                </div>
+                <div class="equipment-id">01004</div>
+                <div class="equipment-type">Grifo</div>
+                <div class="equipment-location">Baño habitacion 2709</div>
+                <div class="equipment-status">En Operación</div>
+                <div class="equipment-actions">
+                    <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
+                    <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                </div>
+            </div>
+
+            <!-- Equipment item -->
+            <div class="equipment-row">
+                <div class="equipment-icon-cell">
+                    <a href="./equipment-info.html">
+                        <div class="equipment-icon" style="background-image: url('../assets/tuberiaBaño.jpg');">
+                            <!-- <img style="width:100%;" src="../assets/AireAcondicionado.jpg" alt=""> -->
+                        </div>
+                    </a>
+                </div>
+                <div class="equipment-id">01003</div>
+                <div class="equipment-type">Tubería</div>
+                <div class="equipment-location">Baño principal del lobby</div>
+                <div class="equipment-status">Fuera de servicio</div>
+                <div class="equipment-actions">
+                    <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
+                    <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Company Info -->
+            <div class="footer-section">
+                <h3>IronFix</h3>
+                <p>Soluciones de mantenimiento profesional para empresas e instituciones. Garantizamos el funcionamiento óptimo de sus instalaciones.</p>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Órdenes</a></li>
+                    <li><a href="#">Técnicos</a></li>
+                    <li><a href="#">Equipos</a></li>
+                    <li><a href="#">Reportes</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Cra. 87 #30-65</p>
+                <p>Antioquia, Medellín</p>
+                <p>Email: info@ironfix.com</p>
+                <p>Teléfono: +57 3243470025</p>
+            </div>
+            
+            <!-- Social Media -->
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <p>Mantente al día con nuestras últimas noticias y actualizaciones.</p>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="copyright">
+            &copy; 2025 IronFix. Todos los derechos reservados.
+        </div>
+    </footer>
+    <script type="module" src="../scripts/index.js"></script>
+    <script type="module" src="../scripts/equipment.js"></script>
+</body>
+</html>

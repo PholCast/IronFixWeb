@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login-sign-up.css">
+    <title>IronFix - Registro</title>
+</head>
+<body>
+    <div class="sign-container">
+        <!-- Logo -->
+        <div class="logo">
+            <span class="logo-text">IronFix</span>
+        </div>
+        
+        <!-- Signup Form -->
+        <form>
+            <!-- <h2 class="form-title">Regístrate</h2> -->
+            
+            <!-- Username field -->
+            <div class="form-group">
+                <label class="form-label">Nombre de usuario</label>
+                <input type="text" id ="username" required class="form-input" placeholder="Nombre de usuario">
+            </div>
+            
+            <!-- Email field -->
+            <div class="form-group">
+                <label class="form-label">Correo electrónico</label>
+                <input type="email" id ="email" required class="form-input" placeholder="Correo electrónico">
+            </div>
+            
+            <!-- Password field -->
+            <div class="form-group">
+                <label class="form-label">Contraseña</label>
+                <input type="password" id ="password" required class="form-input" placeholder="Contraseña">
+            </div>
+
+            <!-- Password field -->
+            <div class="form-group">
+                <label class="form-label">Confirmar Contraseña</label>
+                <input type="password" id="password2" required class="form-input" placeholder="Confirma tu Contraseña">
+            </div>
+            
+            <!-- Signup button -->
+            <button type="submit" class="signup-button">Registrarse</button>
+            <a href="./login.html" class="login-link other-option-link">¿Ya tienes una cuenta?</a>
+        </form>
+    </div>
+    <script type="module" src="../scripts/index.js"></script>
+    <script type="module" src="../scripts/sign-up.js"></script>
+</body>
+</html>

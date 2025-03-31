@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/navbar-footer.css">
+    <link rel="stylesheet" href="../css/technicians.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>IronFix - Técnicos</title>
+</head>
+<body>
+    <!-- Header with navigation -->
+    <header>
+        <div class="logo">IronFix</div>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Ordenes</a></li>
+                <li><a href="./technicians.html">Tecnicos</a></li>
+                <li><a href="./equipment.html">Equipos</a></li>
+                <li><a href="./profile.html">Perfil</a></li>
+            </ul>
+        </nav>
+        <button class="logout-btn"><a href="./login.html">Cerrar Sesión</a></button>
+    </header>
+    
+    <!-- Hero section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Técnicos</h1>
+            <p>Administra el equipo de técnicos que se encargan de resolver las órdenes de mantenimiento. 👨‍🔧 👩‍🔧</p>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+    
+    <!-- Technicians section -->
+    <main class="technicians">
+        <div class="technicians-header">
+            <button class="register-btn">
+                Registrar un técnico <span>→</span>
+            </button>
+        </div>
+        
+        <!-- Technicians table -->
+        <div class="technicians-table">
+            <div class="table-header">
+                <div>Nombre</div>
+                <div>Empresa</div>
+                <div>Contacto</div>
+                <div></div>
+            </div>
+            
+            <!-- Technician 1 -->
+            <div class="technician-row">
+                <div class="technician-name">
+                    <div class="technician-avatar" style="background-image: url('../assets/angel.jpg');"></div>
+                    <div>Angel Avirama De Oro</div>
+                </div>
+                <div class="technician-company">Plomeros S.A.</div>
+                <div class="technician-contact">3132132343</div>
+                <div class="technician-actions">
+                    <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
+                    <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                </div>
+            </div>
+            
+            <!-- Technician 2 -->
+            <div class="technician-row">
+                <div class="technician-name">
+                    <div class="technician-avatar" style="background-image: url('../assets/profileBlank-removebg-preview.png');"></div>
+                    <div>Phol Castañeda</div>
+                </div>
+                <div class="technician-company">Plomeros S.A.</div>
+                <div class="technician-contact">3132132343</div>
+                <div class="technician-actions">
+                    <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
+                    <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                </div>
+            </div>
+            
+            <!-- Technician 3 -->
+            <div class="technician-row">
+                <div class="technician-name">
+                    <div class="technician-avatar" style="background-image: url('../assets/angel.jpg');"></div>
+                    <div>Angel Avirama De Oro</div>
+                </div>
+                <div class="technician-company">Plomeros S.A.</div>
+                <div class="technician-contact">3132132343</div>
+                <div class="technician-actions">
+                    <button class="action-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
+                    <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- Company Info -->
+            <div class="footer-section">
+                <h3>IronFix</h3>
+                <p>Soluciones de mantenimiento profesional para empresas e instituciones. Garantizamos el funcionamiento óptimo de sus instalaciones.</p>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Órdenes</a></li>
+                    <li><a href="#">Técnicos</a></li>
+                    <li><a href="#">Equipos</a></li>
+                    <li><a href="#">Reportes</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Cra. 87 #30-65</p>
+                <p>Antioquia, Medellín</p>
+                <p>Email: info@ironfix.com</p>
+                <p>Teléfono: +57 3243470025</p>
+            </div>
+            
+            <!-- Social Media -->
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <p>Mantente al día con nuestras últimas noticias y actualizaciones.</p>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="copyright">
+            &copy; 2025 IronFix. Todos los derechos reservados.
+        </div>
+    </footer>
+    <script type="module" src="../scripts/index.js"></script>
+    <script type="module" src="../scripts/technicians.js"></script>
+</body>
+</html>

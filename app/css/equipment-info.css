@@ -1,0 +1,146 @@
+/* Equipment info section */
+.equipment-section {
+    background-color: #e9eef5;
+    padding: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.equipment-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.equipment-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #d0d0d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.equipment-image img {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+}
+
+.edit-btn {
+    background-color: #0052e0;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+}
+
+.history-btn {
+    background-color: #0052e0;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.equipment-info {
+    flex: 1;
+}
+
+.equipment-title {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.equipment-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.equipment-detail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #555;
+    min-width: 180px;
+}
+
+.detail-value {
+    color: #333;
+    font-style: italic;
+}
+
+.status-active {
+    color: #00a854;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-icon {
+    width: 16px;
+    height: 16px;
+    background-color: #00a854;
+    border-radius: 50%;
+    position: relative;
+}
+
+.status-icon:after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 4px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: rotate(-45deg);
+    top: 4px;
+    left: 3px;
+}
+
+
+
+@media (max-width: 768px) {
+    
+    
+    .equipment-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .equipment-image-container {
+        margin-bottom: 20px;
+    }
+    
+    .equipment-detail {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .detail-label {
+        min-width: auto;
+    }
+    
+  
+}
