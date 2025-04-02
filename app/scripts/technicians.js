@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
 
                 const newtechnician = {
-                    name,
+                    username:name,
                     email,
                     password, 
                     role: "technician" 
