@@ -15,11 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (newOrderBtn && maintenanceGrid) {
         newOrderBtn.addEventListener("click", () => {
-            // Datos de ejemplo para la nueva orden
+            // Datos para la nueva orden
             const title = prompt("Ingrese el título de la nueva orden de mantenimiento");
             const description = prompt("Descripción breve de la nueva orden.");
     
             // Crear el nuevo elemento de la orden
+            if(title && description){
             const orderCard = document.createElement("div");
             orderCard.classList.add("maintenance-card");
             orderCard.innerHTML = `
@@ -30,8 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `;
     
-            // Agregar la nueva orden a la lista
+            // Agregar la nueva orden al html
             maintenanceGrid.appendChild(orderCard);
+            }else{
+                alert("Debes ingresar todos los datos para crear la orden")
+            }
+            
         });
         }
 

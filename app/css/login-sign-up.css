@@ -70,7 +70,7 @@ body {
 
 
 
-/* Buttons */
+
 .signup-button {
     width: 100%;
     padding: 12px;
@@ -89,7 +89,7 @@ body {
     background-color: #5f4dd1;
 }
         
-/* Responsive adjustments */
+
 @media (max-width: 500px) {
     .sign-container {
         max-width: 90%;
@@ -118,8 +118,6 @@ body {
 .remember-me input[type="checkbox"] {
     width: 16px;
     height: 16px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
 }
 
 .forgot-password {

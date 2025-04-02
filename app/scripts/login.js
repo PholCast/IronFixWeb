@@ -1,11 +1,11 @@
 import { getDB, setCurrentUser } from "./storage.js";
 
 const validateUser = event => {
-    event.preventDefault(); // Evita que la página se recargue
+    event.preventDefault(); // Evita que el form submit vaya a otra pagina
 
     const usernameOrEmail = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
-    const selectedRole = document.getElementById("role").value; // Obtener rol seleccionado
+    const selectedRole = document.getElementById("role").value;
 
     const db = getDB();
     const user = db.users.find(user => 
@@ -15,7 +15,7 @@ const validateUser = event => {
 
     if (user) {
         setCurrentUser(user); 
-        //alert("Login successful! Redirecting...");
+        
 
         if (user.role === "admin") {
             window.location.href = "../html/index.html"; 

@@ -99,27 +99,23 @@
     background-color: #0046c0;
 }
 
-
-/* Icons */
 .icon {
     font-size: 20px;
 }
 
 .accepted,.accepted:hover{
 
-background-color: #28a745; /* Verde */
+background-color: #28a745;
 cursor: default;
 }
         
-/* Responsive adjustments */
+
 @media (max-width: 1024px) {
     .maintenance-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    /* .footer-container {
-        grid-template-columns: repeat(2, 1fr);
-    } */
+   
 }
 
 @media (max-width: 768px) {

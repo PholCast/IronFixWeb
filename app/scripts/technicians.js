@@ -12,14 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Selecciona todos los botones de editar
     const editButtons = document.querySelectorAll(".edit-btn");
 
     editButtons.forEach(button => {
         button.addEventListener("click", (event) => {
             const technicianRow = event.target.closest(".technician-row");
             if (technicianRow) {
-                // Obtener elementos de la fila
+
                 const nameElement = technicianRow.querySelector(".technician-name div:last-child");
                 const companyElement = technicianRow.querySelector(".technician-company");
                 const contactElement = technicianRow.querySelector(".technician-contact");
@@ -37,17 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Seleccionar el botón de registrar técnico
+    
     const registerButton = document.querySelector(".register-btn");
 
     if (registerButton) {
         registerButton.addEventListener("click", () => {
-            // Pedir datos del nuevo técnico
+            
             const name = prompt("Ingrese el nombre del técnico:");
             const company = prompt("Ingrese la empresa del técnico:");
             const phone = prompt("Ingrese el contacto del técnico:");
 
-            // Verificar que el usuario ingresó valores
             if (name && company && phone) {
                 // Crear una nueva fila
                 const newRow = document.createElement("div");
@@ -67,13 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
 
-                // Agregar la nueva fila a la tabla
+                // Agrega la nueva fila a la tabla
                 const techniciansTable = document.querySelector(".technicians-table");
                 if (techniciansTable) {
                     techniciansTable.appendChild(newRow);
                 }
 
-                // Agregar eventos a los nuevos botones de eliminar y editar
+                // Agregar eventos a los botones del tecnico creado
                 newRow.querySelector(".delete-btn").addEventListener("click", () => newRow.remove());
                 newRow.querySelector(".edit-btn").addEventListener("click", () => {
                     const newName = prompt("Ingrese el nuevo nombre:", name);
