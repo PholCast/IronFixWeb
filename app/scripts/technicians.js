@@ -1,3 +1,4 @@
+import {addUser} from "./storage.js";
 document.addEventListener("DOMContentLoaded", () => {
     // Selecciona todos los botones de eliminar
     const deleteButtons = document.querySelectorAll(".delete-btn");
@@ -44,9 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const name = prompt("Ingrese el nombre del técnico:");
             const company = prompt("Ingrese la empresa del técnico:");
+            const email = prompt("Ingrese el correo del técnico:");
+            const password = prompt("Ingrese las contraseña del técnico:");
             const phone = prompt("Ingrese el contacto del técnico:");
 
-            if (name && company && phone) {
+            if (name && company && phone && email && password) {
                 // Crear una nueva fila
                 const newRow = document.createElement("div");
                 newRow.classList.add("technician-row");
@@ -64,6 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button class="action-btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></button>
                     </div>
                 `;
+
+                const newtechnician = {
+                    name,
+                    email,
+                    password, 
+                    role: "technician" 
+                };
+
+                addUser(newtechnician)
 
                 // Agrega la nueva fila a la tabla
                 const techniciansTable = document.querySelector(".technicians-table");
