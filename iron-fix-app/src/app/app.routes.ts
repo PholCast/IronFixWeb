@@ -13,7 +13,8 @@ export const routes: Routes = [
     
     {
         path:'equipment',
-        component:EquipmentComponent
+        component:EquipmentComponent,
+        title:'IronFix - Equipos'
     },
     {
         path:'equipment-info/:id',
@@ -21,23 +22,28 @@ export const routes: Routes = [
     },
     {
         path:'login',
-        component:LoginComponent
+        component:LoginComponent,
+        title:'IronFix - Login'
     },
     {
         path:'',
-        component:OrdersComponent
+        component:OrdersComponent,
+        title:'IronFix - Órdenes'
     },
     {
         path:'profile',
-        component:ProfileComponent
+        component:ProfileComponent,
+        title:'IronFix - Perfil'
     },
     {
         path:'sign-up',
-        component:SignUpComponent
+        component:SignUpComponent,
+        title:'IronFix - Registro'
     },
     {
         path:'technicians',
-        component:TechniciansComponent
+        component:TechniciansComponent,
+        title:'IronFix - Técnicos'
     },
     {
         path:'**',
