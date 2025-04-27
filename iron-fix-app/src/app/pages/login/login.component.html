@@ -5,10 +5,10 @@
     </div>
     
     <!-- Login Form -->
-    <form>
+    <form [formGroup]="loginForm">
         <div class="form-group">
             <label class="form-label" for="role">Selecciona tu rol:</label>
-            <select class="form-input" id="role" name="role" required>
+            <select class="form-input" id="role" name="role" formControlName="role">
                 <option value="" disabled selected>Elige tu rol</option>
                 <option value="admin">Administrador</option>
                 <option value="technician">Técnico</option>
@@ -18,14 +18,14 @@
         <!-- Username/Email field -->
         <div class="form-group">
             <label class="form-label">Nombre de usuario o dirección de correo electrónico</label>
-            <input type="text" id="username" required class="form-input" placeholder="Nombre de usuario o dirección de correo electrónico">
+            <input formControlName="usernameOrEmail" type="text" id="username"  class="form-input" placeholder="Nombre de usuario o dirección de correo electrónico">
         </div>
         
         <!-- Password field -->
         <div class="form-group">
             <label class="form-label">Contraseña</label>
             <div class="password-input-container">
-                <input type="password" id="password" required class="form-input" placeholder="Contraseña">
+                <input formControlName ="password" type="password" id="password"  class="form-input" placeholder="Contraseña">
             </div>
         </div>
         
@@ -39,9 +39,9 @@
         </div>
         
         <!-- Login button -->
-        <button type="submit" id="login-button">Acceder</button>
+        <button (click)="onLogin()"  id="login-button">Acceder</button>
         
         <!-- Register link -->
-        <a href="./sign-up.html" class="register-link other-option-link">Regístrate ahora</a>
+        <a [routerLink]="['/sign-up']" class="register-link other-option-link">Regístrate ahora</a>
     </form>
 </div>

@@ -1,0 +1,49 @@
+/* Header styles */
+header {
+    background-color: #0052e0;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+nav ul li a:hover {
+    opacity: 1;
+}
+
+.logout-btn {
+    background-color: white;
+    color: #0052e0;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+.logout-btn a{
+    color: #0052e0;
+    text-decoration: none;
+    
+}

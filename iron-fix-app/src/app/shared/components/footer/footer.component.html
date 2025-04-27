@@ -1,1 +1,51 @@
-<p>footer works!</p>
+@if(isLoggedUser()){
+<!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <!-- Company Info -->
+        <div class="footer-section">
+            <h3>IronFix</h3>
+            <p>Soluciones de mantenimiento profesional para empresas e instituciones. Garantizamos el funcionamiento óptimo de sus instalaciones.</p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="footer-section">
+            <h3>Enlaces Rápidos</h3>
+            <ul class="footer-links">
+                
+                <li><a href="./index.html">Órdenes</a></li>
+                <li><a href="./technicians.html">Técnicos</a></li>
+                <li><a href="./equipment.html">Equipos</a></li>
+                <li><a href="./equipment-info.html">Reportes</a></li>
+            </ul>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <p>Cra. 87 #30-65</p>
+            <p>Antioquia, Medellín</p>
+            <p>Email: info"&#64;"ironfix.com</p>
+            <p>Teléfono: +57 3243470025</p>
+        </div>
+        
+        <!-- Social Media -->
+        <div class="footer-section">
+            <h3>Síguenos</h3>
+            <p>Mantente al día con nuestras últimas noticias y actualizaciones.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/">Facebook</a>
+                <a href="https://x.com/">Twitter</a>
+                <a href="https://www.linkedin.com/">LinkedIn</a>
+                <a href="https://www.instagram.com/">Instagram</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Copyright -->
+    <div class="copyright">
+        &copy; 2025 IronFix. Todos los derechos reservados.
+    </div>
+</footer>}@else{
+    
+}

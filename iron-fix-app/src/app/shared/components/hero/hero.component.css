@@ -1,0 +1,33 @@
+/* Hero section */
+.hero {
+    background-color: #0052e0;
+    color: white;
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 500px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.hero-image {
+    width: 300px;
+    height: 200px;
+    background-image: url('../assets/ArticulosP212FMantenimiento.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

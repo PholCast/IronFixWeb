@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
+  authService = inject(AuthService);
+
+  isLoggedUser = this.authService.isLogged;
 
 }

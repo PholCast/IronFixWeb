@@ -1,1 +1,16 @@
-<p>header works!</p>
+@if(isLoggedUser()){
+<header>
+    <div class="logo">IronFix</div>
+    <nav>
+        <ul>
+            <li><a href="./index.html" >Ordenes</a></li>
+            <li><a href="./technicians.html">Tecnicos</a></li>
+            <li><a href="./equipment.html">Equipos</a></li>
+            <li><a href="./profile.html">Perfil</a></li>
+        </ul>
+    </nav>
+    <button (click)="onLogout()" class="logout-btn"><a>Cerrar Sesión</a></button>
+</header>
+}@else{
+
+}
