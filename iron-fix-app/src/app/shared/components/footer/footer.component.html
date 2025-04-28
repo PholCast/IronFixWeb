@@ -13,10 +13,13 @@
             <h3>Enlaces Rápidos</h3>
             <ul class="footer-links">
                 
-                <li><a href="./index.html">Órdenes</a></li>
-                <li><a href="./technicians.html">Técnicos</a></li>
-                <li><a href="./equipment.html">Equipos</a></li>
-                <li><a href="./equipment-info.html">Reportes</a></li>
+                <li><a [routerLink]="['']">Órdenes</a></li>
+                @if(!isTechnician()){
+                <li><a [routerLink]="['technicians']">Técnicos</a></li>
+                }
+                <li><a [routerLink]="['equipment']">Equipos</a></li>
+                <li><a [routerLink]="['profile']">Perfil</a></li>
+                <!-- <li><a href="./equipment-info.html">Reportes</a></li> -->
             </ul>
         </div>
         
@@ -25,7 +28,7 @@
             <h3>Contacto</h3>
             <p>Cra. 87 #30-65</p>
             <p>Antioquia, Medellín</p>
-            <p>Email: info"&#64;"ironfix.com</p>
+            <p>Email: info&#64;ironfix.com</p>
             <p>Teléfono: +57 3243470025</p>
         </div>
         

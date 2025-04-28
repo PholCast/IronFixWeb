@@ -8,6 +8,7 @@ import { EquipmentInfoComponent } from './pages/equipment-info/equipment-info.co
 import { EquipmentComponent } from './pages/equipment/equipment.component';
 import { authGuard } from './shared/guards/auth.guard';
 import { noAuthGuard } from './shared/guards/no-auth.guard';
+import { technicianGuard } from './shared/guards/technician.guard';
 
 export const routes: Routes = [
 
@@ -52,7 +53,7 @@ export const routes: Routes = [
         path:'technicians',
         component:TechniciansComponent,
         title:'IronFix - Técnicos',
-        canActivate:[authGuard]
+        canActivate:[authGuard,technicianGuard]
     },
     {
         path:'**',
