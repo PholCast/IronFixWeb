@@ -24,10 +24,13 @@ export class SignUpComponent {
   };
 
   signUpForm = this.fb.group({
+    fullname: ['', [Validators.required]],
     username: ['', [Validators.required]],
     email: ['', [Validators.email, Validators.required]],
     password: ['', [Validators.required]],
     rePassword: ['', [Validators.required]],
+    company:['IronFix'],
+    phone:[''],
     role: ['admin']
   }, { validators: this.passwordsMatchValidator });
 
@@ -39,8 +42,10 @@ export class SignUpComponent {
       const emailControl = this.signUpForm.get('email');
       const passwordControl = this.signUpForm.get('password');
       const rePasswordControl = this.signUpForm.get('rePassword');
+      const fullnameControl = this.signUpForm.get('fullname');
 
-      if (usernameControl?.hasError('required') || emailControl?.hasError('required') || passwordControl?.hasError('required') || rePasswordControl?.hasError('required')) {
+
+      if (usernameControl?.hasError('required') || fullnameControl?.hasError('required') || emailControl?.hasError('required') || passwordControl?.hasError('required') || rePasswordControl?.hasError('required')) {
         Swal.fire({
           text: 'Debe diligenciar todos los campos',
           icon: 'error'

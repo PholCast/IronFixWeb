@@ -23,9 +23,10 @@ export class TechnicianService {
     const existingTechnician = storage.users.find((u: User) => u.username === usernameToSearch);
     
     if (existingTechnician) {
+      existingTechnician.fullname = technician.fullname;
       existingTechnician.username = technician.username;
       existingTechnician.email = technician.email;
-      existingTechnician.role = technician.role;
+      existingTechnician.company = technician.company;
     } else {
       storage.users.push(technician);
     }

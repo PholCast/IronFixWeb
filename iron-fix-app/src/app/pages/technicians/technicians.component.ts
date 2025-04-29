@@ -22,9 +22,13 @@ export class TechniciansComponent implements OnInit  {
 
 
   technicianForm = this.fb.group({
-    username: ['', Validators.required],
-    email: ['', [Validators.required]],
-    role: ['', [Validators.required]]
+    fullname: ['', [Validators.required]],
+    username: ['', [Validators.required]],
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.required]],
+    company:['', [Validators.required]],
+    phone:[''],
+    role: ['technician']
   });
 
   ngOnInit() {
@@ -38,7 +42,7 @@ export class TechniciansComponent implements OnInit  {
   openRegisterModal() {
     this.isEditing = false;
     this.originalUsername = null;
-    this.technicianForm.reset();
+    this.technicianForm.reset({role: 'technician'});
     this.modalVisible = true;
   }
 
@@ -48,8 +52,12 @@ export class TechniciansComponent implements OnInit  {
     this.isEditing = true;
     this.originalUsername = technician.username;
     this.technicianForm.setValue({
+      fullname: technician.fullname,
       username: technician.username,
       email: technician.email,
+      phone: technician.phone,
+      company: technician.company,
+      password: technician.password,
       role: technician.role
     });
     this.modalVisible = true;
@@ -77,7 +85,7 @@ export class TechniciansComponent implements OnInit  {
 
   closeModal() {
     this.modalVisible = false;
-    this.technicianForm.reset();
+    this.technicianForm.reset({role: 'technician'});
     this.originalUsername = null;  
 
   }
