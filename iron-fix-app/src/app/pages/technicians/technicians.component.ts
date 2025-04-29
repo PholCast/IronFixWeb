@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { TechnicianService } from '../../shared/services/technician.service';
+import { TechnicianService } from './services/technician.service';
 import { User } from '../../shared/interfaces/user.interface';
 
 @Component({

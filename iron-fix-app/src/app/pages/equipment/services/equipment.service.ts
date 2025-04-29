@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Equipment } from '../interfaces/equipment.interface';
+import { Equipment } from '../../../shared/interfaces/equipment.interface';
 
 @Injectable({
   providedIn: 'root'

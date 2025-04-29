@@ -1,6 +1,7 @@
 import { Component, inject, signal, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-orders',
@@ -14,6 +15,10 @@ export class OrdersComponent {
 
   showModal = signal(false);
 
+  authService = inject(AuthService);
+  
+  isTechnician = this.authService.userTechnician;
+  
   orders = signal([
     {
       title: 'Revisión de aire acondicionado',

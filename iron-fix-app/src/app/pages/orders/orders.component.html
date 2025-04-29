@@ -1,9 +1,11 @@
 <main class="maintenance">
     <div class="maintenance-header">
       <div class="maintenance-title">
-        Mantenimientos activos <span class="icon">🔧</span>
+        Mantenimientos activos
       </div>
+      @if(!isTechnician()){
       <button class="new-order-btn" (click)="openModal()">Nueva Orden</button>
+      }
     </div>
     <div class="divider"></div>
   
@@ -38,6 +40,7 @@
           <div class="card-title">{{ order.title }}</div>
           <div class="card-description">{{ order.description }}</div>
           
+          @if(isTechnician()){
           <button 
           class="accept-btn" 
           [ngClass]="{ 'accepted': order.accepted }"
@@ -45,7 +48,7 @@
           [disabled]="order.accepted">
           {{ order.accepted ? 'Orden Aceptada' : 'Aceptar Orden' }}
           </button>
-
+        }
         </div>
       </div>
     </div>

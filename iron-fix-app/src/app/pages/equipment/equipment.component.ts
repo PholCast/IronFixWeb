@@ -1,7 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { Equipment } from '../../shared/interfaces/equipment.interface';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { EquipmentService } from '../../shared/services/equipment.service';
+import { EquipmentService } from './services/equipment.service'
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-equipment',
@@ -18,6 +19,10 @@ export class EquipmentComponent {
   equipmentService = inject(EquipmentService);
 
   originalId: string | null = null;
+
+  authService = inject(AuthService);
+
+  isTechnician = this.authService.userTechnician;
 
   equipmentForm = this.fb.group({
     id: ['', [Validators.required]],

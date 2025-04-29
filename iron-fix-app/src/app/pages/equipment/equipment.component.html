@@ -2,7 +2,11 @@
 
     <div class="equipment-table">
       <div class="table-header">
+        @if(!isTechnician()){
         <div class="add-btn" (click)="openRegisterModal()"><span>+</span></div>
+        }@else{
+          <div id="no-add-btn"></div>
+        }
         <div>ID</div>
         <div>Tipo</div>
         <div>Ubicación</div>
@@ -14,7 +18,7 @@
         <div class="equipment-row">
             <div class="equipment-icon-cell">
                 <a href="./equipment-info.html">
-                    <div class="equipment-icon" style="background-image: url('../assets/AireAcondicionado.jpg');">
+                    <div class="equipment-icon" style="background-image: url('../assets/tools.png');">
                     </div>
                 </a>
             </div>
@@ -22,6 +26,7 @@
           <div class="equipment-type">{{ equipment.type }}</div>
           <div class="equipment-location">{{ equipment.location }}</div>
           <div class="equipment-status">{{ equipment.status }}</div>
+          @if(!isTechnician()){
           <div class="equipment-actions">
             <button class="action-btn delete-btn" (click)="deleteEquipment(equipment.id)">
               <i class="fa-regular fa-trash-can"></i>
@@ -30,6 +35,7 @@
               <i class="fa-regular fa-pen-to-square"></i>
             </button>
           </div>
+          }
         </div>
       } @empty {
         <div class="no-row">

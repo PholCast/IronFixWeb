@@ -29,6 +29,13 @@ nav ul li a {
     transition: opacity 0.3s;
 }
 
+
+nav ul li a.active-link {
+    opacity: 1;
+    border-bottom: 1px solid white;
+    font-weight: bold;
+}
+
 nav ul li a:hover {
     opacity: 1;
 }

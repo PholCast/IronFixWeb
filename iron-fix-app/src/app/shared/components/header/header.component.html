@@ -3,13 +3,13 @@
     <div class="logo">IronFix</div>
     <nav>
         <ul>
-            <li><a [routerLink]="['']" >Ordenes</a></li>
+            <li><a [routerLink]="['']" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" >Ordenes</a></li>
 
             @if(!isTechnician()){
-            <li><a [routerLink]="['/technicians']">Tecnicos</a></li>
+            <li><a [routerLink]="['/technicians']" routerLinkActive="active-link">Tecnicos</a></li>
             }
-            <li><a [routerLink]="['/equipment']">Equipos</a></li>
-            <li><a [routerLink]="['/profile']">Perfil</a></li>
+            <li><a [routerLink]="['/equipment']" routerLinkActive="active-link">Equipos</a></li>
+            <li><a [routerLink]="['/profile']" routerLinkActive="active-link">Perfil</a></li>
         </ul>
     </nav>
     <button (click)="onLogout()" class="logout-btn"><a>Cerrar Sesión</a></button>

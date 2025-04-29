@@ -61,6 +61,18 @@
     font-weight: bold;
     text-align: center;
 }
+#no-add-btn{
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #edf0f5;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
 
 .equipment-icon-cell {
     display: flex;
