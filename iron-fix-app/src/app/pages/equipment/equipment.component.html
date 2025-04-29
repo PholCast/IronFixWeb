@@ -1,1 +1,72 @@
-<p>equipment works!</p>
+<div class="equipment">
+
+    <div class="equipment-table">
+      <div class="table-header">
+        <div class="add-btn" (click)="openRegisterModal()"><span>+</span></div>
+        <div>ID</div>
+        <div>Tipo</div>
+        <div>Ubicación</div>
+        <div>Estado</div>
+        <div></div>
+      </div>
+  
+      @for (equipment of equipments(); track equipment.id) {
+        <div class="equipment-row">
+            <div class="equipment-icon-cell">
+                <a href="./equipment-info.html">
+                    <div class="equipment-icon" style="background-image: url('../assets/AireAcondicionado.jpg');">
+                    </div>
+                </a>
+            </div>
+          <div class="equipment-id">{{ equipment.id }}</div>
+          <div class="equipment-type">{{ equipment.type }}</div>
+          <div class="equipment-location">{{ equipment.location }}</div>
+          <div class="equipment-status">{{ equipment.status }}</div>
+          <div class="equipment-actions">
+            <button class="action-btn delete-btn" (click)="deleteEquipment(equipment.id)">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+            <button class="action-btn edit-btn" (click)="openEditModal(equipment)">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+          </div>
+        </div>
+      } @empty {
+        <div class="no-row">
+            <div class="equipment-location">No hay equipos registrados</div>
+            
+            
+        </div>
+      }
+    </div>
+  
+    @if (modalVisible) {
+      <div class="modal-background">
+        <div class="modal-content">
+          <h2>{{ isEditing ? 'Editar Equipo' : 'Registrar Equipo' }}</h2>
+  
+          <form [formGroup]="equipmentForm">
+            <label>ID:</label>
+            <input type="text" formControlName="id" required>
+            <label>Tipo:</label>
+            <input type="text" formControlName="type" required>
+            <label>Ubicación:</label>
+            <input type="text" formControlName="location" required>
+            <label>Estado:</label>
+            <input type="text" formControlName="status" required>
+            <label>Imagen (URL opcional):</label>
+            <input type="text" formControlName="image">
+  
+            <div class="modal-actions">
+              <button (click)="saveEquipment()" class="save-btn" [disabled]="equipmentForm.invalid">
+                {{ isEditing ? 'Actualizar' : 'Crear Equipo' }}
+              </button>
+              <button type="button" class="cancel-btn" (click)="closeModal()">Cancelar</button>
+            </div>
+          </form>
+  
+        </div>
+      </div>
+    }
+  </div>
+  

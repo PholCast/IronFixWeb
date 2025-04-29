@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -16,6 +16,7 @@ export class HeaderComponent {
 
   isLoggedUser = this.authService.isLogged;
 
+  isTechnician = this.authService.userTechnician;
 
   onLogout(){
     this.authService.logout();

@@ -1,1 +1,78 @@
-<p>technicians works!</p>
+<!-- Technicians section -->
+<div class="technicians">
+    <div class="technicians-header">
+        <button class="register-btn" (click)="openRegisterModal()">
+            Registrar un técnico <span>→</span>
+        </button>
+    </div>
+    
+    <!-- Technicians table -->
+    <div class="technicians-table">
+        <div class="table-header">
+            <div>Nombre</div>
+            <div>Empresa</div>
+            <div>Correo</div>
+            <div></div>
+        </div>
+        
+        @for (technician of technicians(); track technician.username) {
+          <div class="technician-row">
+            <div class="technician-name">
+              <div class="technician-avatar" style="background-image: url('../assets/angel.jpg');"></div>
+              <div>{{ technician.username }}</div>
+            </div>
+            <div class="technician-company">{{ technician.company }}</div>
+            <div class="technician-email">{{ technician.email }}</div>
+            <div class="technician-actions">
+              <button class="action-btn delete-btn" (click)="deleteTechnician(technician.username)">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+              <button class="action-btn edit-btn" (click)="openEditModal(technician)">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+            </div>
+          </div>
+        } @empty {
+          <div class="technician-row">
+            <div class="technician-name">No hay técnicos registrados</div>
+          </div>
+        }
+        
+        
+    </div>
+
+    <!-- Modal -->
+  @if (modalVisible) {
+    <div class="modal-background">
+      <div class="modal-content">
+        <h2>{{ isEditing ? 'Editar Técnico' : 'Registrar Técnico' }}</h2>
+
+        <form [formGroup]="technicianForm">
+          <label>Nombre completo:</label>
+          <input type="text" formControlName="fullname" required>
+          <label>Nombre de usuario:</label>
+          <input type="text" formControlName="username" required>
+
+          <label>Email:</label>
+          <input type="text" formControlName="email" required>
+
+          <label>Empresa:</label>
+          <input type="text" formControlName="company" required>
+
+          @if(!isEditing){
+          <label>Contraseña:</label>
+          <input type="password" formControlName="password" required>
+          }
+
+          <div class="modal-actions">
+            <button (click)="saveTechnician()" class="save-btn"  [disabled]="technicianForm.invalid">
+              {{ isEditing ? 'Actualizar' : 'Registrar' }}
+            </button>
+            <button type="button" class="cancel-btn" (click)="closeModal()">Cancelar</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  }
+</div>

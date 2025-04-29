@@ -11,6 +11,8 @@ export class AuthService {
 
   isLogged = signal(this.currentUserExists());
 
+  userTechnician = signal(this.isTechnician())
+
   login(usernameOrEmail: string, password: string,role:string): boolean {
 
     const storage = JSON.parse(localStorage.getItem('appData') || '{"users":[],"equipment":[],"orders":[]}');
@@ -19,7 +21,8 @@ export class AuthService {
     
     if (user && user.password === password) {
       this.isLogged.update(()=>true);
-      localStorage.setItem('currentUser',JSON.stringify(user))
+      localStorage.setItem('currentUser',JSON.stringify(user));
+      this.userTechnician.set(this.isTechnician());
       return true;
     }
 
@@ -33,6 +36,7 @@ export class AuthService {
   logout(): void {
     this.isLogged.update(()=>false);
     localStorage.removeItem('currentUser');
+    this.userTechnician.set(false);
   }
 
   registry(user: User): boolean {
@@ -69,4 +73,21 @@ export class AuthService {
   currentUserExists():boolean{
     return !!JSON.parse(localStorage.getItem('currentUser') || 'false');
   }
+
+  isTechnician(): boolean {
+    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if(user){
+      return (user.role === 'technician') ? true : false;
+    }
+    return false
+  }
+
+  getCurrentUser(): User | null {
+    const userJson = localStorage.getItem('currentUser');
+    if (userJson) {
+      return JSON.parse(userJson) as User;
+    }
+    return null;
+  }
+  
 }
