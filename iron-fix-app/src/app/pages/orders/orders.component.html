@@ -1,1 +1,53 @@
-<p>orders works!</p>
+<main class="maintenance">
+    <div class="maintenance-header">
+      <div class="maintenance-title">
+        Mantenimientos activos <span class="icon">🔧</span>
+      </div>
+      <button class="new-order-btn" (click)="openModal()">Nueva Orden</button>
+    </div>
+    <div class="divider"></div>
+  
+    <!-- Modal (Ventana flotante) -->
+    <div *ngIf="showModal()" class="modal-overlay">
+      <div class="modal-content">
+        <form [formGroup]="orderForm" (ngSubmit)="addOrder()">
+          <h2>Crear Nueva Orden</h2>
+  
+          <label for="title">Título</label>
+          <input id="title" formControlName="title" />
+          <div *ngIf="orderForm.get('title')?.invalid && orderForm.get('title')?.touched">
+            El título es obligatorio.
+          </div>
+  
+          <label for="description">Descripción</label>
+          <textarea id="description" formControlName="description"></textarea>
+          <div *ngIf="orderForm.get('description')?.invalid && orderForm.get('description')?.touched">
+            La descripción es obligatoria.
+          </div>
+  
+          <button type="submit">Guardar</button>
+          <button type="button" (click)="closeModal()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+  
+    <div class="maintenance-grid">
+      <div *ngFor="let order of orders()" class="maintenance-card">
+        <div class="card-image" [ngStyle]="{ 'background-image': 'url(' + order.imageUrl + ')' }"></div>
+        <div class="card-content">
+          <div class="card-title">{{ order.title }}</div>
+          <div class="card-description">{{ order.description }}</div>
+          
+          <button 
+          class="accept-btn" 
+          [ngClass]="{ 'accepted': order.accepted }"
+          (click)="acceptOrder(order)"
+          [disabled]="order.accepted">
+          {{ order.accepted ? 'Orden Aceptada' : 'Aceptar Orden' }}
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </main>
+  
