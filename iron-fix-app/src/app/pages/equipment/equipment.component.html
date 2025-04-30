@@ -17,7 +17,7 @@
       @for (equipment of equipments(); track equipment.id) {
         <div class="equipment-row">
             <div class="equipment-icon-cell">
-                <a href="./equipment-info.html">
+                <a [routerLink]="['/equipment-info', equipment.id]">
                     <div class="equipment-icon" style="background-image: url('../assets/tools.png');">
                     </div>
                 </a>

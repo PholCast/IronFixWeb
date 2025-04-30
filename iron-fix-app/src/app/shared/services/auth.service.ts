@@ -89,5 +89,52 @@ export class AuthService {
     }
     return null;
   }
+
+
+  // Método para actualizar los datos del usuario
+  updateUser(updatedUser: User, originalUsername: string, originalEmail: string): boolean {
+    const storage = JSON.parse(localStorage.getItem('appData') || '{"users":[],"equipment":[],"orders":[]}');
+  
+    // Verificar si el nuevo username o email ya existen en otro usuario
+    const isDuplicate = storage.users.some((u: User) =>
+      (u.username === updatedUser.username || u.email === updatedUser.email) &&
+      (u.username !== originalUsername || u.email !== originalEmail)
+    );
+  
+    if (isDuplicate) {
+      Swal.fire({
+        text: 'Ya existe un usuario con ese nombre de usuario o correo electrónico.',
+        icon: 'error'
+      });
+      return false;
+    }
+  
+    // Buscar al usuario original
+    const userIndex = storage.users.findIndex(
+      (u: User) => u.username === originalUsername && u.email.toLowerCase() === originalEmail.toLowerCase()
+    );
+  
+    if (userIndex === -1) {
+      Swal.fire({
+        text: 'Usuario original no encontrado.',
+        icon: 'error'
+      });
+      return false;
+    }
+  
+    // Actualizar los datos
+    storage.users[userIndex] = updatedUser;
+    localStorage.setItem('appData', JSON.stringify(storage));
+    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+  
+    Swal.fire({
+      text: 'Perfil actualizado correctamente.',
+      icon: 'success'
+    });
+  
+    return true;
+  }
+  
+  
   
 }

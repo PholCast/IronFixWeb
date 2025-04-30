@@ -47,8 +47,6 @@ export class TechniciansComponent implements OnInit  {
   }
 
   openEditModal(technician: any) {
-    console.log("entra a editar")
-    console.log(technician)
     this.isEditing = true;
     this.originalUsername = technician.username;
     this.technicianForm.setValue({

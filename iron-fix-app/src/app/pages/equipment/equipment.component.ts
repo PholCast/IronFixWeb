@@ -3,10 +3,11 @@ import { Equipment } from '../../shared/interfaces/equipment.interface';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EquipmentService } from './services/equipment.service'
 import { AuthService } from '../../shared/services/auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-equipment',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './equipment.component.html',
   styleUrl: './equipment.component.css'
 })

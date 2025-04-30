@@ -13,6 +13,10 @@
     align-items: center;
     gap: 15px;
   }
+
+  .equipment-image img{
+    border-radius: 50%;
+  }
   
   .equipment-image {
     width: 150px;

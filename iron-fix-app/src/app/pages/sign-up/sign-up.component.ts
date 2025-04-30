@@ -80,6 +80,11 @@ export class SignUpComponent {
 
     if (success) {
       this.signUpForm.reset();
+      Swal.fire({
+        title: "Registro",
+        text: "Usuario Registrado con Exito",
+        icon: "success"
+      });
       this.router.navigateByUrl('');
     }
   }
