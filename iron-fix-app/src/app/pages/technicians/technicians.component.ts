@@ -8,7 +8,7 @@ import { User } from '../../shared/interfaces/user.interface';
   selector: 'app-technicians',
   imports: [ReactiveFormsModule],
   templateUrl: './technicians.component.html',
-  styleUrl: './technicians.component.css'
+  styleUrls: ['./technicians.component.css','../../shared/components/hero/hero.component.css']
 })
 export class TechniciansComponent implements OnInit  {
   modalVisible = false;
@@ -16,7 +16,7 @@ export class TechniciansComponent implements OnInit  {
   technicians = signal<User[]>([]);
   
   fb = inject(FormBuilder);
-  technicianService = inject(TechnicianService);  // Inyectar el servicio
+  technicianService = inject(TechnicianService);
 
   originalUsername: string | null = null;
 
@@ -67,18 +67,18 @@ export class TechniciansComponent implements OnInit  {
     const technicianData = this.technicianForm.value;
     if (this.isEditing) {
       console.log('Actualizando técnico:', technicianData);
-      this.technicianService.saveTechnician(technicianData,this.originalUsername); // Guardar técnico
+      this.technicianService.saveTechnician(technicianData,this.originalUsername);
     } else {
       console.log('Registrando técnico:', technicianData);
-      this.technicianService.saveTechnician(technicianData); // Guardar técnico
+      this.technicianService.saveTechnician(technicianData); 
     }
-    this.loadTechnicians();  // Recargar la lista de técnicos
+    this.loadTechnicians();
     this.closeModal();
   }
 
   deleteTechnician(username: string) {
-    this.technicianService.deleteTechnician(username); // Eliminar técnico
-    this.loadTechnicians();  // Recargar la lista de técnicos después de eliminar
+    this.technicianService.deleteTechnician(username); 
+    this.loadTechnicians();
   }
 
   closeModal() {

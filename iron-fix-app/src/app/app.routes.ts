@@ -11,8 +11,6 @@ import { noAuthGuard } from './shared/guards/no-auth.guard';
 import { technicianGuard } from './shared/guards/technician.guard';
 
 export const routes: Routes = [
-
-// I think we should add the routes for creating elements later
     
     {
         path:'equipment',

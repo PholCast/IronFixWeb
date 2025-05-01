@@ -54,3 +54,19 @@ nav ul li a:hover {
     text-decoration: none;
     
 }
+
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 15px;
+    }
+    
+    nav ul {
+        margin-bottom: 15px;
+    }
+}

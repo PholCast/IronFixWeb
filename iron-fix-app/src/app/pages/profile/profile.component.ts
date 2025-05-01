@@ -70,7 +70,6 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  // Método para actualizar el usuario llamando al servicio
   updateUser() {
     if (this.profileForm.invalid) {
       return;
@@ -80,7 +79,7 @@ export class ProfileComponent implements OnInit {
     const success = this.authService.updateUser(updatedUser,this.originalUsername,this.originalEmail);
 
     if (success) {
-      this.currentUser.set(updatedUser);  // Actualizamos la signal
+      this.currentUser.set(updatedUser);
       this.closeModal();
     }
   }

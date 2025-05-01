@@ -1,129 +1,72 @@
-import { Component, inject, signal, computed, effect } from '@angular/core';
+import { Component, inject, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
+import { Order } from '../../shared/interfaces/order.interface';
+import { OrderService } from './services/order.service';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  styleUrls: ['./orders.component.css','../../shared/components/hero/hero.component.css']
 })
 export class OrdersComponent {
-  fb = inject(FormBuilder);
-
-  showModal = signal(false);
-
+  
+  modalVisible = false;
+  
   authService = inject(AuthService);
   
   isTechnician = this.authService.userTechnician;
   
-  orders = signal([
-    {
-      title: 'Revisión de aire acondicionado',
-      description: 'El aire acondicionado de la suite presidencial (Piso 10, Habitación 1001) no enfría adecuadamente.',
-      imageUrl: 'assets/AireAcondicionado.jpg',
-      accepted: false
-    },
-    {
-      title: 'Fuga en tubería de baño',
-      description: 'Se reporta una fuga de agua en la tubería del baño principal del lobby.',
-      imageUrl: 'assets/tuberiaBaño.jpg',
-      accepted: false
-    },
-    {
-      title: 'Revisión de aire acondicionado',
-      description: 'El aire acondicionado de la suite presidencial (Piso 10, Habitación 1001) no enfría adecuadamente.',
-      imageUrl: 'assets/AireAcondicionado.jpg',
-      accepted: false
-    },
-    {
-      title: 'Fuga en tubería de baño',
-      description: 'Se reporta una fuga de agua en la tubería del baño principal del lobby.',
-      imageUrl: 'assets/tuberiaBaño.jpg',
-      accepted: false
-    },
-    {
-      title: 'Fuga en tubería de baño',
-      description: 'Se reporta una fuga de agua en la tubería del baño principal del lobby.',
-      imageUrl: 'assets/tuberiaBaño.jpg',
-      accepted: false
-    },
-    {
-      title: 'Revisión de aire acondicionado',
-      description: 'El aire acondicionado de la suite presidencial (Piso 10, Habitación 1001) no enfría adecuadamente.',
-      imageUrl: 'assets/AireAcondicionado.jpg',
-      accepted: false
-    },
-    {
-      title: 'Fuga en tubería de baño',
-      description: 'Se reporta una fuga de agua en la tubería del baño principal del lobby.',
-      imageUrl: 'assets/tuberiaBaño.jpg',
-      accepted: false
-    },
-    {
-      title: 'Revisión de aire acondicionado',
-      description: 'El aire acondicionado de la suite presidencial (Piso 10, Habitación 1001) no enfría adecuadamente.',
-      imageUrl: 'assets/AireAcondicionado.jpg',
-      accepted: false
-    }
-  ]);
+  orders = signal<Order[]>([])
+  
+  fb = inject(FormBuilder);
 
   orderForm = this.fb.group({
-    title: [''],
-    description: [''],
+    title: ['', Validators.required],
+    description: ['', Validators.required],
+    accepted: [false]
   });
+  orderService = inject(OrderService)
 
-  isFormValid = computed(() => this.orderForm.valid);
-
-  constructor() {
-          const savedOrders = localStorage.getItem('appData');
-      let orders = [];
-
-      if (savedOrders) {
-        const appData = JSON.parse(savedOrders);
-        orders = appData.orders || []; // Asegura que orders sea un arreglo, incluso si no existe la propiedad.
-      }
-
-      // Solo si hay órdenes guardadas, las usamos
-      if (Array.isArray(orders) && orders.length > 0) {
-        this.orders.set(orders);
-      }
-    // Guardar las órdenes de nuevo en appData cuando cambien
-    effect(() => {
-      const appData = JSON.parse(localStorage.getItem('appData') || '{}');
-      appData.orders = this.orders(); // Actualiza las órdenes
-      localStorage.setItem('appData', JSON.stringify(appData)); // Guarda el objeto completo
-    });
+  ngOnInit(){
+    this.loadOrders();
   }
 
-  openModal() {
+  loadOrders(){
+    this.orders.set(this.orderService.getOrders());
+  }
+
+  openNewOrderModal() {
+    this.modalVisible = true;
     this.orderForm.reset();
-    this.showModal.set(true);
   }
 
-  closeModal() {
-    this.showModal.set(false);
-  }
-
-  addOrder() {
-    console.log("Formulario enviado:", this.orderForm.value); // Debug
-    console.log("Formulario válido:", this.isFormValid()); // Debug
-  
-    const { title, description } = this.orderForm.getRawValue();
-  
-    this.orders.update(current => [
-      { title: title ?? '', description: description ?? '', imageUrl: '', accepted: false },  // Nueva orden al principio
-      ...current // Las órdenes existentes
-    ]);      
-  
+  saveOrder(){
+    if (this.orderForm.invalid) return;
+    const newOrder = this.orderForm.getRawValue() as Order;
+    this.orderService.saveOrder(newOrder);
+    this.orders.update((prev) => [newOrder,...prev ]);
     this.closeModal();
+
   }
 
-  acceptOrder(order: { title: string; description: string; imageUrl: string; accepted: boolean }) {
-    this.orders.update(current =>
-      current.map(o => o === order ? { ...o, accepted: true } : o)
-    );
+  closeModal(){
+    this.modalVisible = false;
+
   }
+
+  acceptOrder(order: Order){
+    const updatedOrder = { ...order, accepted: true };
+  
+    this.orders.update(current =>
+      current.map(o => o === order ? updatedOrder : o)
+    );
+  
+    this.orderService.updateOrder(updatedOrder);
+  }
+  
+  
 }

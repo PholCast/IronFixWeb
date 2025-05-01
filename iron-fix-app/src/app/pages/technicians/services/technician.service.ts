@@ -8,7 +8,6 @@ export class TechnicianService {
 
   constructor() { }
 
-  // Obtener todos los técnicos desde localStorage
   getTechnicians(): User[] {
     const storage = JSON.parse(localStorage.getItem('appData') || '{"users":[],"equipment":[],"orders":[]}');
     return storage.users.filter((user: any) => user.role === 'technician');
@@ -34,7 +33,7 @@ export class TechnicianService {
     localStorage.setItem('appData', JSON.stringify(storage));
   }
 
-  // Eliminar técnico
+
   deleteTechnician(username: string) {
     const storage = JSON.parse(localStorage.getItem('appData') || '{"users":[],"equipment":[],"orders":[]}');
     storage.users = storage.users.filter((user: User) => user.username !== username);

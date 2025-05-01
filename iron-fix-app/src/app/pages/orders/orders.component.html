@@ -1,11 +1,23 @@
+<!-- Hero section -->
+<section class="hero">
+  <div class="hero-content">
+      <h1>Órdenes de Mantenimiento</h1>
+      @if(!isTechnician()){
+      <p>Administra y crea órdenes de mantenimiento para garantizar el correcto funcionamiento de los equipos.</p>
+      }@else{
+        <p>Toma el control de las órdenes de mantenimiento, acéptalas y ayuda a mantener los equipos en óptimas condiciones. </p>
+      }
+  </div>
+  <div class="hero-image"></div>
+</section>
 <!-- Maintenance section -->
-<main class="maintenance">
+<div class="maintenance">
   <div class="maintenance-header">
       <div class="maintenance-title">
           Mantenimientos activos <span class="icon"></span>
       </div>
       @if(!isTechnician()){
-      <button class="new-order-btn">Nueva Orden</button>
+      <button class="new-order-btn" (click)="openNewOrderModal()">Nueva Orden</button>
       }
   </div>
   <div class="divider"></div>
@@ -13,15 +25,52 @@
   <!-- Maintenance cards grid -->
   <div class="maintenance-grid">
       <!-- Card 1 -->
+      @for (order of orders(); track order.title){
       <div class="maintenance-card">
           <div class="card-image" style="background-image: url('../assets/AireAcondicionado.jpg');"></div>
           <div class="card-content">
-              <div class="card-title">Revisión de aire acondicionado</div>
+              <div class="card-title">{{order.title}}</div>
               <div class="card-description">
-                  El aire acondicionado de la suite presidencial (Piso 10, Habitación 1001) no enfría adecuadamente.
+                {{order.description}}
               </div>
-              <button class="accept-btn">Aceptar Orden</button>
+              @if(isTechnician()){
+                @if(!order.accepted){
+              <button class="accept-btn" (click)="acceptOrder(order)">Aceptar Orden</button>
+              }@else{
+                <button class="accept-btn accepted">Orden aceptada</button>
+                
+              }}
           </div>
       </div>
+    }@empty{
+      <div class="no-orders">No hay órdenes registradas</div>
+    }
   </div>
-</main>
+
+
+    <!-- Modal -->
+  @if (modalVisible) {
+    <div class="modal-background">
+      <div class="modal-content">
+        <h2>Crear Nueva Orden</h2>
+
+        <form [formGroup]="orderForm">
+          <label>Título</label>
+          <input type="text" formControlName="title" required>
+          <label>Descripción</label>
+          <textarea formControlName="description" required></textarea>
+
+          
+
+        
+
+          <div class="modal-actions">
+            <button (click)="saveOrder()" class="save-btn"  [disabled]="orderForm.invalid">Guardar</button>
+            <button type="button" class="cancel-btn" (click)="closeModal()">Cancelar</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  }
+</div>

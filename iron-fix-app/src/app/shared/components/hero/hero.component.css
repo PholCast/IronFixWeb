@@ -26,8 +26,22 @@
 .hero-image {
     width: 300px;
     height: 200px;
-    background-image: url('../assets/ArticulosP212FMantenimiento.jpg');
+    background-image: url('../../../../../public/assets/ArticulosP212FMantenimiento.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+
+@media (max-width: 768px) {
+    
+    .hero {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+    
+    .hero-content {
+        margin-bottom: 30px;
+    }
+
 }

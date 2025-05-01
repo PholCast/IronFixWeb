@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-equipment',
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './equipment.component.html',
-  styleUrl: './equipment.component.css'
+  styleUrls: ['./equipment.component.css','../../shared/components/hero/hero.component.css']
 })
 export class EquipmentComponent {
   modalVisible = false;
@@ -30,7 +30,7 @@ export class EquipmentComponent {
     type: ['', [Validators.required]],
     location: ['', [Validators.required]],
     status: ['', [Validators.required]],
-    image: [''] // Opcional
+    image: ['']
   });
 
   ngOnInit() {
@@ -63,7 +63,7 @@ export class EquipmentComponent {
 
   saveEquipment() {
     if (this.equipmentForm.invalid) return;
-    const equipmentData = this.equipmentForm.getRawValue() as Equipment; // <-- Este cambio
+    const equipmentData = this.equipmentForm.getRawValue() as Equipment;
     if (this.isEditing) {
       this.equipmentService.saveEquipment(equipmentData, this.originalId);
     } else {

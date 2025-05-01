@@ -78,6 +78,9 @@
   font-size: 12px;
   color: #666;
   line-height: 1.4;
+  min-height: 50px;  /* altura mínima para que todos tengan al menos esto */
+  max-height: 50px;  /* evita que crezca más */
+  overflow: hidden;
 }
 
 .accept-btn {
@@ -130,4 +133,122 @@ cursor: default;
   }
   
   
+}
+
+
+/* Modal background */
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal title */
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Form inputs */
+.modal-content label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.modal-content input:focus {
+  border-color: #0052e0;
+  outline: none;
+}
+
+.modal-content textarea {
+  width: 100%;          
+  height: 100px;        
+  resize: none;         
+  padding: 10px;        
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.modal-content textarea:focus {
+  border-color: #0052e0;
+  outline: none;
+}
+
+
+
+/* Modal actions (buttons) */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Save button */
+.save-btn {
+  background-color: #0052e0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.save-btn:disabled {
+  background-color: #b0d4ff;
+  cursor: not-allowed;
+}
+
+/* Cancel button */
+.cancel-btn {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: #d13b3b;
+}
+
+.no-orders {
+  font-size: 17px;
+  color: #333;
+  max-width: 500px;
 }
