@@ -5,36 +5,29 @@ import { Order } from '../../../shared/interfaces/order.interface';
   providedIn: 'root'
 })
 export class OrderService {
-  private storageKey = 'appData';
+  
 
-  private loadData() {
-    const data = localStorage.getItem(this.storageKey);
-    return data ? JSON.parse(data) : { users: [], equipment: [], orders: [] };
-  }
-
-  private saveData(data: any) {
-    localStorage.setItem(this.storageKey, JSON.stringify(data));
+  private saveOrderData(orderList: Order[]) {
+    localStorage.setItem('orders', JSON.stringify(orderList));
   }
 
   getOrders(): Order[] {
-    const data = this.loadData();
-    return data.orders || [];
+    return JSON.parse(localStorage.getItem('orders') || '[]');
   }
 
   saveOrder(order: Order) {
-    const data = this.loadData();
-    data.orders = [order,...data.orders]
-    this.saveData(data);
+    const orders = this.getOrders();
+    orders.unshift(order)
+    this.saveOrderData(orders);
   }
 
   updateOrder(updatedOrder: Order) {
-    const data = this.loadData();
-    const orders: Order[] = data.orders; 
-    data.orders = orders.map((order: Order) =>
+    let orders = this.getOrders();
+    orders = orders.map((order: Order) =>
       order.title === updatedOrder.title && 
       order.description === updatedOrder.description ? updatedOrder : order
     );
-    this.saveData(data);
+    this.saveOrderData(orders);
   }  
 
 }

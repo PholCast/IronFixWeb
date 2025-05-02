@@ -6,20 +6,20 @@
     align-items: center;
     
 }
-/* Login and Signup container */
+
 .sign-container {
     width: 100%;
     max-width: 450px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    padding:  40px;
+    padding:  14px 40px;
     text-align: center;
 }
 
 /* Logo */
 .logo {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     display: inline-block;
 }
 
@@ -74,7 +74,7 @@
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-bottom: 20px
+    margin-bottom: 15px
 }
         
 .signup-button:hover {

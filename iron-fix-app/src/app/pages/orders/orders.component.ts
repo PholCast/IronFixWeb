@@ -1,4 +1,4 @@
-import { Component, inject, signal} from '@angular/core';
+import { Component, inject, OnInit, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
@@ -12,7 +12,7 @@ import { OrderService } from './services/order.service';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css','../../shared/components/hero/hero.component.css']
 })
-export class OrdersComponent {
+export class OrdersComponent implements OnInit {
   
   modalVisible = false;
   
@@ -39,26 +39,26 @@ export class OrdersComponent {
     this.orders.set(this.orderService.getOrders());
   }
 
-  openNewOrderModal() {
+  onOpenNewOrderModal() {
     this.modalVisible = true;
     this.orderForm.reset();
   }
 
-  saveOrder(){
+  onSaveOrder(){
     if (this.orderForm.invalid) return;
     const newOrder = this.orderForm.getRawValue() as Order;
     this.orderService.saveOrder(newOrder);
     this.orders.update((prev) => [newOrder,...prev ]);
-    this.closeModal();
+    this.onCloseModal();
 
   }
 
-  closeModal(){
+  onCloseModal(){
     this.modalVisible = false;
 
   }
 
-  acceptOrder(order: Order){
+  onAcceptOrder(order: Order){
     const updatedOrder = { ...order, accepted: true };
   
     this.orders.update(current =>

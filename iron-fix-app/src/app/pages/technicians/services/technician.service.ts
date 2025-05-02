@@ -9,17 +9,17 @@ export class TechnicianService {
   constructor() { }
 
   getTechnicians(): User[] {
-    const storage = JSON.parse(localStorage.getItem('appData') || '{"users":[],"equipment":[],"orders":[]}');
-    return storage.users.filter((user: any) => user.role === 'technician');
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    return users.filter((user:User) => user.role === 'technician');
   }
 
   // Agregar o actualizar técnico
-  saveTechnician(technician:any, originalUsername?: string | null) {
-    const storage = JSON.parse(localStorage.getItem('appData') || '{"users":[],"equipment":[],"orders":[]}');
+  saveTechnician(technician:User, originalUsername?: string | null) {
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
 
     const usernameToSearch = originalUsername || technician.username;
 
-    const existingTechnician = storage.users.find((u: User) => u.username === usernameToSearch);
+    const existingTechnician = users.find((u: User) => u.username === usernameToSearch);
     
     if (existingTechnician) {
       existingTechnician.fullname = technician.fullname;
@@ -27,16 +27,16 @@ export class TechnicianService {
       existingTechnician.email = technician.email;
       existingTechnician.company = technician.company;
     } else {
-      storage.users.push(technician);
+      users.push(technician);
     }
 
-    localStorage.setItem('appData', JSON.stringify(storage));
+    localStorage.setItem('users', JSON.stringify(users));
   }
 
 
   deleteTechnician(username: string) {
-    const storage = JSON.parse(localStorage.getItem('appData') || '{"users":[],"equipment":[],"orders":[]}');
-    storage.users = storage.users.filter((user: User) => user.username !== username);
-    localStorage.setItem('appData', JSON.stringify(storage));
+    let users = JSON.parse(localStorage.getItem('users') || '[]');
+    users = users.filter((user: User) => user.username !== username);
+    localStorage.setItem('users', JSON.stringify(users));
   }
 }

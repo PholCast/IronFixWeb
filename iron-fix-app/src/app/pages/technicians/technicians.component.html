@@ -8,9 +8,9 @@
 </section>
 
 <!-- Technicians section -->
-<div class="technicians">
+<section class="technicians">
     <div class="technicians-header">
-        <button class="register-btn" (click)="openRegisterModal()">
+        <button class="register-btn" (click)="onOpenRegisterModal()">
             Registrar un técnico <span>→</span>
         </button>
     </div>
@@ -33,10 +33,10 @@
             <div class="technician-company">{{ technician.company }}</div>
             <div class="technician-email">{{ technician.email }}</div>
             <div class="technician-actions">
-              <button class="action-btn delete-btn" (click)="deleteTechnician(technician.username)">
+              <button class="action-btn delete-btn" (click)="onDeleteTechnician(technician.username)">
                 <i class="fa-regular fa-trash-can"></i>
               </button>
-              <button class="action-btn edit-btn" (click)="openEditModal(technician)">
+              <button class="action-btn edit-btn" (click)="onOpenEditModal(technician)">
                 <i class="fa-regular fa-pen-to-square"></i>
               </button>
             </div>
@@ -74,14 +74,14 @@
           }
 
           <div class="modal-actions">
-            <button (click)="saveTechnician()" class="save-btn"  [disabled]="technicianForm.invalid">
+            <button (click)="onSaveTechnician()" class="save-btn"  [disabled]="technicianForm.invalid">
               {{ isEditing ? 'Actualizar' : 'Registrar' }}
             </button>
-            <button type="button" class="cancel-btn" (click)="closeModal()">Cancelar</button>
+            <button type="button" class="cancel-btn" (click)="onCloseModal()">Cancelar</button>
           </div>
         </form>
 
       </div>
     </div>
   }
-</div>
+</section>

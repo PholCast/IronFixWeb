@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  openEditModal() {
+  onOpenEditModal() {
     const user = this.currentUser();
     if (user) {
       this.fillForm(user); 
@@ -64,13 +64,13 @@ export class ProfileComponent implements OnInit {
     this.modalVisible = true;
   }
 
-  closeModal() {
+  onCloseModal() {
     this.modalVisible = false;
     this.profileForm.reset();  
 
   }
 
-  updateUser() {
+  onUpdateUser() {
     if (this.profileForm.invalid) {
       return;
     }
@@ -80,7 +80,7 @@ export class ProfileComponent implements OnInit {
 
     if (success) {
       this.currentUser.set(updatedUser);
-      this.closeModal();
+      this.onCloseModal();
     }
   }
 

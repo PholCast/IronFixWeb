@@ -11,12 +11,12 @@
   <div class="hero-image"></div>
 </section>
 
-<div class="equipment">
+<section class="equipment">
 
     <div class="equipment-table">
       <div class="table-header">
         @if(!isTechnician()){
-        <div class="add-btn" (click)="openRegisterModal()"><span>+</span></div>
+        <div class="add-btn" (click)="onOpenRegisterModal()"><span>+</span></div>
         }@else{
           <div id="no-add-btn"></div>
         }
@@ -41,10 +41,10 @@
           <div class="equipment-status">{{ equipment.status }}</div>
           @if(!isTechnician()){
           <div class="equipment-actions">
-            <button class="action-btn delete-btn" (click)="deleteEquipment(equipment.id)">
+            <button class="action-btn delete-btn" (click)="onDeleteEquipment(equipment.id)">
               <i class="fa-regular fa-trash-can"></i>
             </button>
-            <button class="action-btn edit-btn" (click)="openEditModal(equipment)">
+            <button class="action-btn edit-btn" (click)="onOpenEditModal(equipment)">
               <i class="fa-regular fa-pen-to-square"></i>
             </button>
           </div>
@@ -77,15 +77,15 @@
             <input type="text" formControlName="image">
   
             <div class="modal-actions">
-              <button (click)="saveEquipment()" class="save-btn" [disabled]="equipmentForm.invalid">
+              <button (click)="onSaveEquipment()" class="save-btn" [disabled]="equipmentForm.invalid">
                 {{ isEditing ? 'Actualizar' : 'Crear Equipo' }}
               </button>
-              <button type="button" class="cancel-btn" (click)="closeModal()">Cancelar</button>
+              <button type="button" class="cancel-btn" (click)="onCloseModal()">Cancelar</button>
             </div>
           </form>
   
         </div>
       </div>
     }
-  </div>
+  </section>
   

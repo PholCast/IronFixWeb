@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Equipment } from '../../shared/interfaces/equipment.interface';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { EquipmentService } from './services/equipment.service'
+import { EquipmentService } from '../../shared/services/equipment.service'
 import { AuthService } from '../../shared/services/auth.service';
 import { RouterLink } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './equipment.component.html',
   styleUrls: ['./equipment.component.css','../../shared/components/hero/hero.component.css']
 })
-export class EquipmentComponent {
+export class EquipmentComponent implements OnInit {
   modalVisible = false;
   isEditing = false;
   equipments = signal<Equipment[]>([]);
@@ -41,14 +41,14 @@ export class EquipmentComponent {
     this.equipments.set(this.equipmentService.getEquipment());
   }
 
-  openRegisterModal() {
+  onOpenRegisterModal() {
     this.isEditing = false;
     this.originalId = null;
     this.equipmentForm.reset();
     this.modalVisible = true;
   }
 
-  openEditModal(equipment: Equipment) {
+  onOpenEditModal(equipment: Equipment) {
     this.isEditing = true;
     this.originalId = equipment.id;
     this.equipmentForm.setValue({
@@ -61,7 +61,7 @@ export class EquipmentComponent {
     this.modalVisible = true;
   }
 
-  saveEquipment() {
+  onSaveEquipment() {
     if (this.equipmentForm.invalid) return;
     const equipmentData = this.equipmentForm.getRawValue() as Equipment;
     if (this.isEditing) {
@@ -70,15 +70,15 @@ export class EquipmentComponent {
       this.equipmentService.saveEquipment(equipmentData);
     }
     this.loadEquipment();
-    this.closeModal();
+    this.onCloseModal();
   }
 
-  deleteEquipment(id: string) {
+  onDeleteEquipment(id: string) {
     this.equipmentService.deleteEquipment(id);
     this.loadEquipment();
   }
 
-  closeModal() {
+  onCloseModal() {
     this.modalVisible = false;
     this.equipmentForm.reset();
     this.originalId = null;

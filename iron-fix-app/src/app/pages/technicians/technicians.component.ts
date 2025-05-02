@@ -39,14 +39,14 @@ export class TechniciansComponent implements OnInit  {
     this.technicians.set(this.technicianService.getTechnicians());  
   }
 
-  openRegisterModal() {
+  onOpenRegisterModal() {
     this.isEditing = false;
     this.originalUsername = null;
     this.technicianForm.reset({role: 'technician'});
     this.modalVisible = true;
   }
 
-  openEditModal(technician: any) {
+  onOpenEditModal(technician: User) {
     this.isEditing = true;
     this.originalUsername = technician.username;
     this.technicianForm.setValue({
@@ -61,10 +61,10 @@ export class TechniciansComponent implements OnInit  {
     this.modalVisible = true;
   }
 
-  saveTechnician() {
+  onSaveTechnician() {
     if (this.technicianForm.invalid) return;
 
-    const technicianData = this.technicianForm.value;
+    const technicianData = this.technicianForm.getRawValue() as User;
     if (this.isEditing) {
       console.log('Actualizando técnico:', technicianData);
       this.technicianService.saveTechnician(technicianData,this.originalUsername);
@@ -73,15 +73,15 @@ export class TechniciansComponent implements OnInit  {
       this.technicianService.saveTechnician(technicianData); 
     }
     this.loadTechnicians();
-    this.closeModal();
+    this.onCloseModal();
   }
 
-  deleteTechnician(username: string) {
+  onDeleteTechnician(username: string) {
     this.technicianService.deleteTechnician(username); 
     this.loadTechnicians();
   }
 
-  closeModal() {
+  onCloseModal() {
     this.modalVisible = false;
     this.technicianForm.reset({role: 'technician'});
     this.originalUsername = null;  

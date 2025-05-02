@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Equipment } from '../../shared/interfaces/equipment.interface';
-import { EquipmentService } from '../equipment/services/equipment.service';
+import { EquipmentService } from '../../shared/services/equipment.service';
 
 @Component({
   selector: 'app-equipment-info',
@@ -9,7 +9,7 @@ import { EquipmentService } from '../equipment/services/equipment.service';
   templateUrl: './equipment-info.component.html',
   styleUrl: './equipment-info.component.css'
 })
-export class EquipmentInfoComponent {
+export class EquipmentInfoComponent implements OnInit{
 
   equipmentId: string | null = null;
   equipmentData: Equipment | null = null;
@@ -26,8 +26,7 @@ export class EquipmentInfoComponent {
 
   loadEquipmentData(id: string | null): void {
     if (id) {
-      const equipmentList = this.equipmentService.getEquipment();
-      this.equipmentData = equipmentList.find(eq => eq.id === id) || null;
+      this.equipmentData = this.equipmentService.getEquipmentById(id) || null;
     }
   }
 }

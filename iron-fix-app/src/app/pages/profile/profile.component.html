@@ -1,5 +1,5 @@
 <!-- Profile section -->
-<div class="profile-section">
+<section class="profile-section">
     <div class="profile-image">
         <img src="../assets/leoPro.png" alt="Foto de perfil">
     </div>
@@ -31,7 +31,7 @@
                 <span class="detail-value">{{ currentUser()?.email }}</span>
             </div>
         </div>
-        <button class="edit-btn" (click)="openEditModal()">Editar</button>
+        <button class="edit-btn" (click)="onOpenEditModal()">Editar</button>
     </div>
 
 
@@ -60,14 +60,14 @@
           <input type="text" formControlName="email" required>
 
           <div class="modal-actions">
-            <button (click)="updateUser()" class="save-btn"  [disabled]="profileForm.invalid">
+            <button (click)="onUpdateUser()" class="save-btn"  [disabled]="profileForm.invalid">
               Actualizar
             </button>
-            <button type="button" class="cancel-btn" (click)="closeModal()">Cancelar</button>
+            <button type="button" class="cancel-btn" (click)="onCloseModal()">Cancelar</button>
           </div>
         </form>
 
       </div>
     </div>
   }
-</div>
+</section>

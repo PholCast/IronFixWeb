@@ -11,13 +11,13 @@
   <div class="hero-image"></div>
 </section>
 <!-- Maintenance section -->
-<div class="maintenance">
+<section class="maintenance">
   <div class="maintenance-header">
       <div class="maintenance-title">
           Mantenimientos activos <span class="icon"></span>
       </div>
       @if(!isTechnician()){
-      <button class="new-order-btn" (click)="openNewOrderModal()">Nueva Orden</button>
+      <button class="new-order-btn" (click)="onOpenNewOrderModal()">Nueva Orden</button>
       }
   </div>
   <div class="divider"></div>
@@ -35,7 +35,7 @@
               </div>
               @if(isTechnician()){
                 @if(!order.accepted){
-              <button class="accept-btn" (click)="acceptOrder(order)">Aceptar Orden</button>
+              <button class="accept-btn" (click)="onAcceptOrder(order)">Aceptar Orden</button>
               }@else{
                 <button class="accept-btn accepted">Orden aceptada</button>
                 
@@ -65,12 +65,12 @@
         
 
           <div class="modal-actions">
-            <button (click)="saveOrder()" class="save-btn"  [disabled]="orderForm.invalid">Guardar</button>
-            <button type="button" class="cancel-btn" (click)="closeModal()">Cancelar</button>
+            <button (click)="onSaveOrder()" class="save-btn"  [disabled]="orderForm.invalid">Guardar</button>
+            <button type="button" class="cancel-btn" (click)="onCloseModal()">Cancelar</button>
           </div>
         </form>
 
       </div>
     </div>
   }
-</div>
+</section>

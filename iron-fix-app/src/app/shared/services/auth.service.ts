@@ -13,14 +13,18 @@ export class AuthService {
 
   userTechnician = signal(this.isTechnician())
 
+  private getStoredUsers(): User[] {
+    return JSON.parse(localStorage.getItem('users') || '[]');
+  }
+
   login(usernameOrEmail: string, password: string,role:string): boolean {
 
-    const storage = JSON.parse(localStorage.getItem('appData') || '{"users":[],"equipment":[],"orders":[]}');
+    const users = this.getStoredUsers();
     
-    const user = storage.users.find((u: User) => (u.username === usernameOrEmail || u.email === usernameOrEmail) && u.role === role );
+    const user = users.find((u: User) => (u.username === usernameOrEmail || u.email === usernameOrEmail) && u.role === role );
     
     if (user && user.password === password) {
-      this.isLogged.update(()=>true);
+      this.isLogged.set(true);
       localStorage.setItem('currentUser',JSON.stringify(user));
       this.userTechnician.set(this.isTechnician());
       return true;
@@ -34,17 +38,17 @@ export class AuthService {
   }
 
   logout(): void {
-    this.isLogged.update(()=>false);
+    this.isLogged.set(false);
     localStorage.removeItem('currentUser');
     this.userTechnician.set(false);
   }
 
   registry(user: User): boolean {
 
-    const storage = JSON.parse(localStorage.getItem('appData') || '{"users":[],"equipment":[],"orders":[]}');
+    const users = this.getStoredUsers();
 
-    const userExists = storage.users.some((u: User) => u.username === user.username);
-    const emailExists = storage.users.some((u: User) => u.email === user.email);
+    const userExists = users.some((u: User) => u.username === user.username);
+    const emailExists = users.some((u: User) => u.email === user.email);
   
     if (userExists) {
       Swal.fire({
@@ -61,23 +65,23 @@ export class AuthService {
       });
       return false;
     }
-    storage.users.push(user);
+    users.push(user);
 
-    localStorage.setItem('appData', JSON.stringify(storage));
+    localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('currentUser',JSON.stringify(user))
     
-    this.isLogged.update(()=>true);
+    this.isLogged.set(true);
     return true;
   }
 
   currentUserExists():boolean{
-    return !!JSON.parse(localStorage.getItem('currentUser') || 'false');
+    return !!this.getCurrentUser();
   }
 
   isTechnician(): boolean {
-    const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const user = this.getCurrentUser()
     if(user){
-      return (user.role === 'technician') ? true : false;
+      return (user.role === 'technician');
     }
     return false
   }
@@ -91,12 +95,12 @@ export class AuthService {
   }
 
 
-  // Método para actualizar los datos del usuario
+  
   updateUser(updatedUser: User, originalUsername: string, originalEmail: string): boolean {
-    const storage = JSON.parse(localStorage.getItem('appData') || '{"users":[],"equipment":[],"orders":[]}');
+    const users = this.getStoredUsers();
   
     // Verificar si el nuevo username o email ya existen en otro usuario
-    const isDuplicate = storage.users.some((u: User) =>
+    const isDuplicate = users.some((u: User) =>
       (u.username === updatedUser.username || u.email === updatedUser.email) &&
       (u.username !== originalUsername || u.email !== originalEmail)
     );
@@ -110,7 +114,7 @@ export class AuthService {
     }
   
     // Buscar al usuario original
-    const userIndex = storage.users.findIndex(
+    const userIndex = users.findIndex(
       (u: User) => u.username === originalUsername && u.email.toLowerCase() === originalEmail.toLowerCase()
     );
   
@@ -123,8 +127,8 @@ export class AuthService {
     }
   
     // Actualizar los datos
-    storage.users[userIndex] = updatedUser;
-    localStorage.setItem('appData', JSON.stringify(storage));
+    users[userIndex] = updatedUser;
+    localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('currentUser', JSON.stringify(updatedUser));
   
     Swal.fire({
