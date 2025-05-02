@@ -5,8 +5,10 @@
       <div class="equipment-image">
           <img src="assets/tools.png" alt="Imagen del equipo">
       </div>
-      <button class="edit-btn">Editar</button>
-      <button class="history-btn">Historial de Mantenimiento</button>
+      @if(!isTechnician()){
+        <button class="edit-btn">Editar</button>
+        <button class="history-btn">Historial de Mantenimiento</button>
+        }
   </div>
   <div class="equipment-info">
       <h1 class="equipment-title">Detalles del equipo</h1>

@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Equipment } from '../../shared/interfaces/equipment.interface';
 import { EquipmentService } from '../../shared/services/equipment.service';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-equipment-info',
@@ -15,7 +16,9 @@ export class EquipmentInfoComponent implements OnInit{
   equipmentData: Equipment | null = null;
   private route = inject(ActivatedRoute);
   private equipmentService = inject(EquipmentService);
-
+  authService = inject(AuthService);
+  isTechnician = this.authService.userTechnician;
+  
   ngOnInit(){
     // Suscripción a los parámetros de la ruta
     this.route.paramMap.subscribe(params => {
