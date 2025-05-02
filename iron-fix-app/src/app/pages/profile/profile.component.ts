@@ -73,7 +73,7 @@ export class ProfileComponent implements OnInit {
 
   onUpdateUser() {
     if (this.profileForm.invalid) {
-      // Validar específicamente el teléfono y el correo
+
       if (this.profileForm.controls['phone'].invalid) {
         Swal.fire({
           text: 'El teléfono debe ser numérico.',

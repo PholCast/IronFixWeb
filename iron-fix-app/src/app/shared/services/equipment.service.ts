@@ -20,10 +20,11 @@ export class EquipmentService {
     return equipmentList.find((equipment: Equipment) => equipment.id === id) || null;
   }
 
+  // Agregar o actualizar equipo
   saveEquipment(equipment: Equipment, originalId?: string | null): boolean {
     const equipmentList = this.getEquipment();
   
-    // Verificar duplicado de ID solo si estamos creando o cambiando el ID original
+    
     const duplicate = equipmentList.find(e =>
       e.id.toLowerCase() === equipment.id.toLowerCase() &&
       e.id.toLowerCase() !== (originalId || '').toLowerCase()

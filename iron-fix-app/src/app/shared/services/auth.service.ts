@@ -89,7 +89,7 @@ export class AuthService {
   updateUser(updatedUser: User, originalUsername: string, originalEmail: string): { success: boolean, message?: string } {
     const users = this.getStoredUsers();
   
-    // Verificar si el nuevo username o email ya existen en otro usuario
+    
     const isDuplicate = users.some((u: User) =>
       (u.username.toLowerCase() === updatedUser.username.toLowerCase() || u.email.toLowerCase() === updatedUser.email.toLowerCase()) &&
       (u.username.toLowerCase() !== originalUsername.toLowerCase() || u.email.toLowerCase() !== originalEmail.toLowerCase())
