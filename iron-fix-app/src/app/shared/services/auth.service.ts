@@ -21,7 +21,10 @@ export class AuthService {
 
     const users = this.getStoredUsers();
     
-    const user = users.find((u: User) => (u.username === usernameOrEmail || u.email === usernameOrEmail) && u.role === role );
+    const user = users.find((u: User) => 
+      (u.username.toLowerCase() === usernameOrEmail.toLowerCase() || 
+    u.email.toLowerCase() === usernameOrEmail.toLowerCase()) && 
+    u.role.toLowerCase() === role.toLowerCase() );
     
     if (user && user.password === password) {
       this.isLogged.set(true);
@@ -29,11 +32,6 @@ export class AuthService {
       this.userTechnician.set(this.isTechnician());
       return true;
     }
-
-    Swal.fire({
-      text: 'Credenciales incorrectas',
-      icon: 'error'
-    });
     return false;
   }
 
@@ -43,27 +41,19 @@ export class AuthService {
     this.userTechnician.set(false);
   }
 
-  registry(user: User): boolean {
+  registry(user: User): { success: boolean, message?: string } {
 
     const users = this.getStoredUsers();
 
-    const userExists = users.some((u: User) => u.username === user.username);
-    const emailExists = users.some((u: User) => u.email === user.email);
+    const userExists = users.some((u: User) => u.username.toLowerCase() === user.username.toLowerCase());
+    const emailExists = users.some((u: User) => u.email.toLowerCase() === user.email.toLowerCase());
   
     if (userExists) {
-      Swal.fire({
-        text: `El nombre de usuario ${user.username} ya está en uso.`,
-        icon: 'error'
-      });
-      return false;
+      return { success: false, message: `El nombre de usuario ${user.username} ya está en uso.` };
     }
   
     if (emailExists) {
-      Swal.fire({
-        text: `El correo electrónico ${user.email} ya está en uso.`,
-        icon: 'error'
-      });
-      return false;
+      return { success: false, message: `El correo electrónico ${user.email} ya está en uso.` };
     }
     users.push(user);
 
@@ -71,7 +61,7 @@ export class AuthService {
     localStorage.setItem('currentUser',JSON.stringify(user))
     
     this.isLogged.set(true);
-    return true;
+    return {success:true};
   }
 
   currentUserExists():boolean{
@@ -96,21 +86,17 @@ export class AuthService {
 
 
   
-  updateUser(updatedUser: User, originalUsername: string, originalEmail: string): boolean {
+  updateUser(updatedUser: User, originalUsername: string, originalEmail: string): { success: boolean, message?: string } {
     const users = this.getStoredUsers();
   
     // Verificar si el nuevo username o email ya existen en otro usuario
     const isDuplicate = users.some((u: User) =>
-      (u.username === updatedUser.username || u.email === updatedUser.email) &&
-      (u.username !== originalUsername || u.email !== originalEmail)
+      (u.username.toLowerCase() === updatedUser.username.toLowerCase() || u.email.toLowerCase() === updatedUser.email.toLowerCase()) &&
+      (u.username.toLowerCase() !== originalUsername.toLowerCase() || u.email.toLowerCase() !== originalEmail.toLowerCase())
     );
   
     if (isDuplicate) {
-      Swal.fire({
-        text: 'Ya existe un usuario con ese nombre de usuario o correo electrónico.',
-        icon: 'error'
-      });
-      return false;
+      return { success: false, message: 'Ya existe un usuario con ese nombre de usuario o correo electrónico.' };
     }
   
     // Buscar al usuario original
@@ -119,11 +105,7 @@ export class AuthService {
     );
   
     if (userIndex === -1) {
-      Swal.fire({
-        text: 'Usuario original no encontrado.',
-        icon: 'error'
-      });
-      return false;
+      return { success: false, message: 'Usuario original no encontrado.' };
     }
   
     // Actualizar los datos
@@ -131,12 +113,7 @@ export class AuthService {
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('currentUser', JSON.stringify(updatedUser));
   
-    Swal.fire({
-      text: 'Perfil actualizado correctamente.',
-      icon: 'success'
-    });
-  
-    return true;
+    return {success: true};
   }
   
   

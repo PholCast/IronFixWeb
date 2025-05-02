@@ -39,9 +39,15 @@ export class LoginComponent {
 
     const success = this.authService.login(usernameOrEmail!, password!,role!);
 
-    if (success){
-      this.router.navigateByUrl('');
+    if (!success){
+      Swal.fire({
+        text: 'Credenciales incorrectas',
+        icon: 'error'
+      });
+      return
+      
     }
+    this.router.navigateByUrl('');
 
   }
 

@@ -76,9 +76,9 @@ export class SignUpComponent {
     
     const {rePassword,...userRegistry} = this.signUpForm.getRawValue();
     
-    const success = this.authService.registry(userRegistry as User);
+    const result = this.authService.registry(userRegistry as User);
 
-    if (success) {
+    if (result.success) {
       this.signUpForm.reset();
       Swal.fire({
         title: "Registro",
@@ -86,6 +86,12 @@ export class SignUpComponent {
         icon: "success"
       });
       this.router.navigateByUrl('');
+    }else{
+      Swal.fire({
+        title: "Error de registro",
+        text: result.message,
+        icon: "error"
+      });
     }
   }
 }

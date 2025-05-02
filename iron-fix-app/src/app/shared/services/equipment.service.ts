@@ -20,20 +20,32 @@ export class EquipmentService {
     return equipmentList.find((equipment: Equipment) => equipment.id === id) || null;
   }
 
-  saveEquipment(equipment: Equipment, originalId?: string|null) {
+  saveEquipment(equipment: Equipment, originalId?: string | null): boolean {
     const equipmentList = this.getEquipment();
+  
+    // Verificar duplicado de ID solo si estamos creando o cambiando el ID original
+    const duplicate = equipmentList.find(e =>
+      e.id.toLowerCase() === equipment.id.toLowerCase() &&
+      e.id.toLowerCase() !== (originalId || '').toLowerCase()
+    );
+  
+    if (duplicate) return false;
+  
     if (originalId) {
-      // Editar
+      // Editando
       const index = equipmentList.findIndex((e: Equipment) => e.id === originalId);
       if (index !== -1) {
         equipmentList[index] = equipment;
       }
     } else {
-      // Nuevo
+      // Creando nuevo
       equipmentList.push(equipment);
     }
+  
     this.saveEquipmentData(equipmentList);
+    return true;
   }
+  
 
   deleteEquipment(id: string) {
     let equipmentList = this.getEquipment();

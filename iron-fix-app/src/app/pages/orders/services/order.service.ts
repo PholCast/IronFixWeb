@@ -15,10 +15,19 @@ export class OrderService {
     return JSON.parse(localStorage.getItem('orders') || '[]');
   }
 
-  saveOrder(order: Order) {
+  saveOrder(order: Order): boolean {
     const orders = this.getOrders();
+
+    const duplicate = orders.find(o =>
+    o.title.trim().toLowerCase() === order.title.trim().toLowerCase() &&
+    o.description.trim().toLowerCase() === order.description.trim().toLowerCase()
+    );
+
+    if(duplicate) return false
+
     orders.unshift(order)
     this.saveOrderData(orders);
+    return true;
   }
 
   updateOrder(updatedOrder: Order) {

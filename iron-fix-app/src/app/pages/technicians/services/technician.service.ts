@@ -10,33 +10,49 @@ export class TechnicianService {
 
   getTechnicians(): User[] {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    return users.filter((user:User) => user.role === 'technician');
+    return users.filter((user:User) => user.role.toLowerCase() === 'technician');
   }
 
   // Agregar o actualizar técnico
-  saveTechnician(technician:User, originalUsername?: string | null) {
+  saveTechnician(technician: User, originalUsername?: string | null): true | 'username' | 'email' {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
+  
+    const duplicate = users.find((u: User) => 
+      u.username.toLowerCase() === technician.username.toLowerCase() &&
+      u.username.toLowerCase() !== (originalUsername || '').toLowerCase()
+    );
+  
+    if (duplicate) return 'username';
 
-    const usernameToSearch = originalUsername || technician.username;
+    const emailDuplicate = users.find((u: User) =>
+    u.email.toLowerCase() === technician.email.toLowerCase() &&
+    u.username.toLowerCase() !== (originalUsername || '').toLowerCase()
+    );
 
-    const existingTechnician = users.find((u: User) => u.username === usernameToSearch);
-    
-    if (existingTechnician) {
-      existingTechnician.fullname = technician.fullname;
-      existingTechnician.username = technician.username;
-      existingTechnician.email = technician.email;
-      existingTechnician.company = technician.company;
+    if (emailDuplicate) return 'email';
+  
+    if (originalUsername) {
+      // Editando
+      const index = users.findIndex((u: User) => 
+        u.username.toLowerCase() === originalUsername.toLowerCase()
+      );
+      if (index !== -1) {
+        users[index] = technician;
+      }
     } else {
+      // Creando
       users.push(technician);
     }
-
+  
     localStorage.setItem('users', JSON.stringify(users));
+    return true;
   }
+  
 
 
   deleteTechnician(username: string) {
     let users = JSON.parse(localStorage.getItem('users') || '[]');
-    users = users.filter((user: User) => user.username !== username);
+    users = users.filter((user: User) => user.username.toLowerCase() !== username.toLowerCase());
     localStorage.setItem('users', JSON.stringify(users));
   }
 }

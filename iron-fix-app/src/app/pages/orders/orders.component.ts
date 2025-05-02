@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import { Order } from '../../shared/interfaces/order.interface';
 import { OrderService } from './services/order.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-orders',
@@ -46,10 +47,26 @@ export class OrdersComponent implements OnInit {
 
   onSaveOrder(){
     if (this.orderForm.invalid) return;
+
     const newOrder = this.orderForm.getRawValue() as Order;
-    this.orderService.saveOrder(newOrder);
+    const saved = this.orderService.saveOrder(newOrder);
+
+    if (!saved) {
+      Swal.fire({
+        icon: 'error',
+        title: '¡Error!',
+        text: 'La orden ingresada ya existe',
+      });
+      return;
+    }
     this.orders.update((prev) => [newOrder,...prev ]);
     this.onCloseModal();
+    
+    Swal.fire({
+      icon: 'success',
+      title: '¡Orden registrada!',
+      text: 'La orden fue creada exitosamente.'
+    });
 
   }
 

@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { User } from '../../shared/interfaces/user.interface';
 import { AuthService } from '../../shared/services/auth.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -24,8 +25,8 @@ export class ProfileComponent implements OnInit {
     fullname: ['', [Validators.required]],
     username: ['', [Validators.required]],
     company: ['', [Validators.required]],
-    jobTitle: ['', [Validators.required]],
-    phone: [''],
+    jobTitle: [''],
+    phone: ['',[Validators.pattern('^[0-9]+$')]],
     email: ['', [Validators.email, Validators.required]],
     password: [''],
     role: ['']
@@ -72,15 +73,42 @@ export class ProfileComponent implements OnInit {
 
   onUpdateUser() {
     if (this.profileForm.invalid) {
+      // Validar específicamente el teléfono y el correo
+      if (this.profileForm.controls['phone'].invalid) {
+        Swal.fire({
+          text: 'El teléfono debe ser numérico.',
+          icon: 'error'
+        });
+      } else if (this.profileForm.controls['email'].invalid) {
+        Swal.fire({
+          text: 'El correo electrónico no es válido.',
+          icon: 'error'
+        });
+      } else {
+        Swal.fire({
+          text: 'Por favor, complete todos los campos requeridos.',
+          icon: 'error'
+        });
+      }
       return;
     }
+    
     const updatedUser: User = this.profileForm.getRawValue() as User;
 
-    const success = this.authService.updateUser(updatedUser,this.originalUsername,this.originalEmail);
+    const result = this.authService.updateUser(updatedUser,this.originalUsername,this.originalEmail);
 
-    if (success) {
+    if (result.success) {
       this.currentUser.set(updatedUser);
+      Swal.fire({
+        text: 'Perfil actualizado correctamente.',
+        icon: 'success'
+      });
       this.onCloseModal();
+    }else{
+      Swal.fire({
+              text: result.message,
+              icon: "error"
+            });
     }
   }
 

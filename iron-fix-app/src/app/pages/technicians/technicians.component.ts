@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterLink } from '@angular/router';
 import { TechnicianService } from './services/technician.service';
 import { User } from '../../shared/interfaces/user.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-technicians',
@@ -65,20 +66,66 @@ export class TechniciansComponent implements OnInit  {
     if (this.technicianForm.invalid) return;
 
     const technicianData = this.technicianForm.getRawValue() as User;
+    
+    let result: boolean | 'username' | 'email';
+
     if (this.isEditing) {
-      console.log('Actualizando técnico:', technicianData);
-      this.technicianService.saveTechnician(technicianData,this.originalUsername);
+      result = this.technicianService.saveTechnician(technicianData,this.originalUsername);
     } else {
-      console.log('Registrando técnico:', technicianData);
-      this.technicianService.saveTechnician(technicianData); 
+      result = this.technicianService.saveTechnician(technicianData); 
     }
+
+    if (result === 'username') {
+      Swal.fire({
+        icon: 'error',
+        title: '¡Error!',
+        text: 'El nombre de usuario ya está en uso.',
+      });
+      return;
+    }
+  
+    if (result === 'email') {
+      Swal.fire({
+        icon: 'error',
+        title: '¡Error!',
+        text: 'El correo electrónico ya está en uso.',
+      });
+      return;
+    }
+    
+    
+    Swal.fire({
+      icon: 'success',
+      title: this.isEditing ? '¡Cambios guardados!' : '¡Técnico registrado!',
+      text: this.isEditing
+        ? 'Los cambios en el técnico fueron guardados exitosamente.'
+        : 'Técnico registrado exitosamente.'
+    });
     this.loadTechnicians();
     this.onCloseModal();
   }
 
   onDeleteTechnician(username: string) {
-    this.technicianService.deleteTechnician(username); 
-    this.loadTechnicians();
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción eliminará al técnico permanentemente.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#ff4d4f',
+      cancelButtonColor: '#0052e0',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.technicianService.deleteTechnician(username);
+        this.loadTechnicians();
+        Swal.fire({
+          icon: 'success',
+          title: '¡Eliminado!',
+          text: 'El técnico fue eliminado correctamente.'
+        });
+      }
+    });
   }
 
   onCloseModal() {

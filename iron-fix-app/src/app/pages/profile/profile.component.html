@@ -42,25 +42,25 @@
         <h2>Editar Perfil</h2>
 
         <form [formGroup]="profileForm">
-          <label>Nombre completo:</label>
+          <label>Nombre completo*</label>
           <input type="text" formControlName="fullname" required>
-          <label>Nombre de usuario:</label>
+          <label>Nombre de usuario*</label>
           <input type="text" formControlName="username" required>
 
-          <label>Empresa:</label>
+          <label>Empresa*</label>
           <input type="text" formControlName="company" required>
 
-          <label>Cargo:</label>
-          <input type="text" formControlName="jobTitle" required>
+          <label>Cargo</label>
+          <input type="text" formControlName="jobTitle">
 
-          <label>Teléfono:</label>
-          <input type="text" formControlName="phone" required>
+          <label>Teléfono</label>
+          <input type="text" formControlName="phone">
 
-          <label>Email:</label>
+          <label>Email*</label>
           <input type="text" formControlName="email" required>
 
           <div class="modal-actions">
-            <button (click)="onUpdateUser()" class="save-btn"  [disabled]="profileForm.invalid">
+            <button (click)="onUpdateUser()" class="save-btn">
               Actualizar
             </button>
             <button type="button" class="cancel-btn" (click)="onCloseModal()">Cancelar</button>
